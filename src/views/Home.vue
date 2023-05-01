@@ -9,9 +9,10 @@ import { ROLE, PATH } from "../common/const";
       // 设置不同角色访问的首页
       let role = sessionStorage.getItem("role");
       console.log(role)
-      if(role === ROLE.ADMIN) {
-        this.$router.push(PATH.ADMIN_ACCOUNT_MANAGEMENT.path);
-      } else if(role === ROLE.INVENTORY_MANAGER) {
+      // if(role === ROLE.ADMIN) {
+      //   this.$router.push(PATH.ADMIN_ACCOUNT_MANAGEMENT.path);
+      // } else
+      if(role === ROLE.INVENTORY_MANAGER) {
         this.$router.push(PATH.InventoryManager.path);
       } else if (role === ROLE.SALE_STAFF ) {
         this.$router.push(PATH.SaleStaff.path);

@@ -1,6 +1,6 @@
 // 部署url
 export const REQUEST_BASE_URL_PROD = "http://ismzl.com/";
-// 开发url （mock的地址
+// 开发url
 export const REQUEST_BASE_URL_DEV = "http://localhost:8080";
 
 export const ROLE = {

@@ -1,18 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { ROLE, PATH } from "../common/const";
-import BusinessConditionView from "@/views/finance/BusinessConditionView";
 
 
 
 const Error = () => import("../components/content/Error");
 const Login = () => import("../views/auth/Login");
 const Home = () => import("../views/Home");
-const AccountManagement = () => import("../views/purchase/AccountManagement");
+const AccountManagement = () => import("../views/account/AccountManagement");
 
 
-
-const StaffSalaryRulesView = () => import("../views/staff/staffSalaryRulesView")
 const StaffClockInView = () => import("../views/staff/staffClockInView")
 const StaffRegistrationView = () => import("../views/staff/staffRegistrationView")
 
@@ -42,20 +39,8 @@ const routes = [
     component: AccountManagement,
     meta: { requiresAuth: PATH.ADMIN_ACCOUNT_MANAGEMENT.requiresAuth }
   },
-  {
-    path: PATH.BUSINESS_CONDITION_VIEW.path,
-    component: BusinessConditionView,
-    name: "BusinessConditionView",
-    meta: { requiresAuth: PATH.BUSINESS_CONDITION_VIEW.requiresAuth }
-  },
 
   //员工管理
-  {
-    path: PATH.STAFF_SALARYRULES_VIEW.path,
-    component: StaffSalaryRulesView,
-    name: "StaffSalaryRulesView",
-    meta: { requiresAuth: PATH.STAFF_SALARYRULES_VIEW.requiresAuth }
-  },
   {
     path: PATH.STAFF_CLOCKIN_VIEW.path,
     component: StaffClockInView,

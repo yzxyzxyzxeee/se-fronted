@@ -51,7 +51,6 @@ export default {
               }
             };
             auth(config).then(res2 => {
-              // console.log(res2);
               sessionStorage.setItem("name", res2.result.name);
               sessionStorage.setItem("role", res2.result.role);
               this.$router.push("/");

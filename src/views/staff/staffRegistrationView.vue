@@ -376,10 +376,8 @@ export default {
     },
 
     editStaff(id) {
-      // TODO: 修改客户信息
       this.editInfo = this.staffList.filter(x => x.id === id)[0];
       this.editDialogVisible = true;
-      //alert(`TODO: 修改${id}客户信息`)
     }
   }
 }
