@@ -12,6 +12,7 @@ const AccountManagement = () => import("../views/account/AccountManagement");
 
 const StaffClockInView = () => import("../views/staff/staffClockInView")
 const StaffRegistrationView = () => import("../views/staff/staffRegistrationView")
+const Approval = () => import("../views/approval/Approval");
 
 Vue.use(VueRouter);
 
@@ -38,6 +39,13 @@ const routes = [
     path: PATH.ADMIN_ACCOUNT_MANAGEMENT.path,
     component: AccountManagement,
     meta: { requiresAuth: PATH.ADMIN_ACCOUNT_MANAGEMENT.requiresAuth }
+  },
+
+  // 审批
+  {
+    path: PATH.GM_APPROVAL.path,
+    component: Approval,
+    meta: { requiresAuth: PATH.GM_APPROVAL.requiresAuth }
   },
 
   //员工管理
@@ -70,6 +78,8 @@ const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   // console.log(to.path);
   if (to.path === "/error" || to.path === "/login") {
+    console.log(to.path.toString());
+    console.log("222");
     next();
   } else if (to.path === "/") {
     let token = sessionStorage.getItem("token");
@@ -91,6 +101,7 @@ router.beforeEach(async (to, from, next) => {
     }
   } else {
     // 非法路径, 直接next (跳转error)
+    console.log("111");
     next();
   }
 });
