@@ -31,6 +31,7 @@ export default {
       if (job !== "GM") {
         this.$message.success('打卡成功')
         checkIn(param).then(_res => {
+          // eslint-disable-next-line no-empty
           if(_res.msg === 'Success') {
 
           } else this.$message.success('打卡失败')
