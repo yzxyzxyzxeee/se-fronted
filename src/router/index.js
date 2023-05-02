@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { ROLE, PATH } from "../common/const";
+import FinancialStaff from "@/views/financialStaff/FinancialStaff";
 
 
 
@@ -8,6 +9,10 @@ const Error = () => import("../components/content/Error");
 const Login = () => import("../views/auth/Login");
 const Home = () => import("../views/Home");
 const AccountManagement = () => import("../views/account/AccountManagement");
+const FinancialStaffView = () => import("../views/financialStaff/FinancialStaff");
+const SaleStaffView = () => import("../views/SaleStaff/SaleStaff");
+const SaleManagerView = () => import("../views/SaleManager/SaleManager");
+const InventoryManagerView = () => import("../views/InventoryManager/InventoryManager");
 
 
 const StaffClockInView = () => import("../views/staff/staffClockInView")
@@ -61,6 +66,35 @@ const routes = [
     name: "StaffRegistrationView",
     meta: { requiresAuth: PATH.STAFF_REGISTRATION_VIEW.requiresAuth }
   },
+  //财政
+  {
+    path: PATH.FinancialStaff.path,
+    component:FinancialStaffView,
+    name:"FinancialStaffView",
+    meta: { requiresAuth: PATH.FinancialStaff.requiresAuth}
+  },
+  //销售
+  {
+    path: PATH.SaleStaff.path,
+    component:SaleStaffView,
+    name:"SaleStaffView",
+    meta: { requiresAuth: PATH.SaleStaff.requiresAuth}
+  },
+  //销售经理
+  {
+    path: PATH.SaleManager.path,
+    component:SaleManagerView,
+    name:"SaleManagerView",
+    meta: { requiresAuth: PATH.SaleManager.requiresAuth}
+  },
+  //库存管理
+  {
+    path: PATH.InventoryManager.path,
+    component:InventoryManagerView,
+    name:"SaleManagerView",
+    meta: { requiresAuth: PATH.InventoryManager.requiresAuth}
+  },
+
 
   // -----------------------未找到页面-----------------------------
   {

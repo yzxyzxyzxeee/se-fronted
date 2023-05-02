@@ -339,7 +339,6 @@ export default {
           let params = {
             name: this.staffForm.name,
             realName: this.staffForm.name,
-            //TODO gender: this.staffForm.gender,
             birth: this.staffForm.birth,
             phoneNumber: this.staffForm.phoneNumber,
             baseSalary: this.staffForm.baseSalary,

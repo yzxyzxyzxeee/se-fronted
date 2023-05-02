@@ -37,25 +37,9 @@ export const PATH = {
     requiresAuth:[ROLE.FINANCIAL_STAFF]
   },
   // GM
-  GM_APPROVAL: {
-    path: '/approval',
-    requiresAuth: [ROLE.GM,ROLE.ADMIN]
-  },
-
-  //PROMOTION
-  USER_PROMOTION:{
-    path: '/userPromotion',
-    requiresAuth: [ROLE.GM,ROLE.ADMIN]
-  },
-
-  PID_PROMOTION:{
-    path: '/pidPromotion',
-    requiresAuth: [ROLE.GM,ROLE.ADMIN]
-  },
-
-  AMOUNT_PROMOTION:{
-    path: '/amountPromotion',
-    requiresAuth: [ROLE.GM,ROLE.ADMIN]
+  GM: {
+    path: '/GM',
+    requiresAuth: [ROLE.GM]
   },
 
   // admin
