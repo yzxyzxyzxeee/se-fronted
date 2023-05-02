@@ -26,7 +26,7 @@
         <el-table-column
           prop="gender"
           label="性别"
-          width="50">
+          width="60">
         </el-table-column>
         <el-table-column
           prop="birth"
@@ -39,7 +39,7 @@
           width="200">
         </el-table-column>
         <el-table-column
-          prop="role"
+          prop="job"
           label="工作岗位"
           width="100">
         </el-table-column>
@@ -111,13 +111,12 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="出生日期" prop="birth"><!--TODO 复选框-->
+          <el-form-item label="出生日期" prop="birth">
             <el-date-picker
               v-model="staffForm.birth"
               type="datetime">
             </el-date-picker>
           </el-form-item>
-
           <el-form-item label="手机" prop="phone">
             <el-input v-model="staffForm.phoneNumber"></el-input>
           </el-form-item>
@@ -344,7 +343,7 @@ export default {
             jobLevel: this.staffForm.jobLevel,
             jobSalary: this.staffForm.jobSalary,
             salaryCalculateWay: this.staffForm.salaryCalculateWay,
-            password: "123456",
+            password: "123456",//初始密码
           }
            console.log(params);
            createStaff(params).then(_res => {

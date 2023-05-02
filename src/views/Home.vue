@@ -22,7 +22,7 @@ import { ROLE, PATH } from "../common/const";
       }else if (role === ROLE.FINANCIAL_STAFF) {
         this.$router.push(PATH.FinancialStaff.path);
       } else if (role === ROLE.GM) {
-        this.$router.push(PATH.GM_APPROVAL.path);
+        this.$router.push(PATH.GM.path);
       }
       else {
         this.$router.push("/error");

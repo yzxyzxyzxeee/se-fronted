@@ -45,7 +45,7 @@ export const PATH = {
   // admin
   ADMIN_ACCOUNT_MANAGEMENT:{
     path: '/accountManagement',
-    requiresAuth: [ROLE.ADMIN]
+    requiresAuth: [ROLE.ADMIN,ROLE.GM]
   },
   //HR
   STAFF_REGISTRATION_VIEW: {
@@ -54,6 +54,6 @@ export const PATH = {
   },
   STAFF_CLOCKIN_VIEW: {
     path: '/staffClockInView',
-    requiresAuth: [ROLE.HR, ROLE.ADMIN,ROLE.SALE_STAFF,ROLE.FINANCIAL_STAFF,ROLE.SALE_MANAGER,ROLE.INVENTORY_MANAGER,ROLE]
+    requiresAuth: [ROLE.HR, ROLE.ADMIN,ROLE.SALE_STAFF,ROLE.FINANCIAL_STAFF,ROLE.SALE_MANAGER,ROLE.INVENTORY_MANAGER,ROLE.GM]
   }
 }
