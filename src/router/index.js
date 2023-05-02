@@ -48,9 +48,9 @@ const routes = [
 
   // 审批
   {
-    path: PATH.GM_APPROVAL.path,
+    path: PATH.GM.path,
     component: Approval,
-    meta: { requiresAuth: PATH.GM_APPROVAL.requiresAuth }
+    meta: { requiresAuth: PATH.GM.requiresAuth}
   },
 
   //员工管理
