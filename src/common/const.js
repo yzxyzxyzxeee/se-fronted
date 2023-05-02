@@ -49,6 +49,10 @@ export const PATH = {
     path:"/promotion",
     requiresAuth:[ROLE.GM,ROLE.SALE_MANAGER]
   },
+  CustomerView:{
+    path:"/customerView",
+    requiresAuth:[ROLE.GM]
+  },
 
   // admin
   ADMIN_ACCOUNT_MANAGEMENT:{

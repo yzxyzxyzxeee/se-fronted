@@ -66,7 +66,7 @@
 import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
 import PromotionList from "./PromotionList"
-import {getAllPromotion} from "@/network/promotion";
+import {createPromotion, getAllPromotion} from "@/network/promotion";
 
 export default {
   name: 'PurchaseView',
@@ -91,13 +91,18 @@ export default {
             type: '',
           }
         ]
-      }
+      },
+      rules: {
+        supplier: [
+          { required: true, message: '111', trigger: 'change' }
+        ],
+      },
     }
   },
   methods: {
     getPromotion() {
       getAllPromotion({}).then(_res => {
-        this.purchaseList = _res.result
+        this.promotionList = _res.result
         this.pendingLevel1List = this.promotionList.filter(item => item.state === '待一级审批')
         this.pendingLevel2List = this.promotionList.filter(item => item.state === '待二级审批')
         this.successList = this.promotionList.filter(item => item.state === '审批完成')
@@ -122,6 +127,15 @@ export default {
           this.promotionForm.promotionSheetContent.forEach((item) => {
             item.purchaseSheetId = null
             item.id = parseInt(item.id)
+          })
+          createPromotion(this.promotionForm).then(_res => {
+            console.log(_res)
+            if (_res.msg === 'Success') {
+              this.$message.success('创建成功!')
+              this.resetForm()
+              this.dialogVisible = false
+              this.getPromotion()
+            }
           })
         } else {
           this.$message.error('Error!');
