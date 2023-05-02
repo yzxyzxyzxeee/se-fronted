@@ -13,8 +13,8 @@ const FinancialStaffView = () => import("../views/financialStaff/FinancialStaff"
 const SaleStaffView = () => import("../views/SaleStaff/SaleStaff");
 const SaleManagerView = () => import("../views/SaleManager/SaleManager");
 const InventoryManagerView = () => import("../views/InventoryManager/InventoryManager");
-const PromotionView = () =>import("../views/approval/PromotionView");
-const PromotionMakeView = () => import("../views/SaleStaff/PromotionMake");
+const PromotionView = () =>import("../views/promotion/PromotionView");
+const PromotionMakeView = () => import("../views/promotion/PromotionView");
 
 const StaffClockInView = () => import("../views/staff/staffClockInView")
 const StaffRegistrationView = () => import("../views/staff/staffRegistrationView")
@@ -81,6 +81,12 @@ const routes = [
     name:"SaleStaffView",
     meta: { requiresAuth: PATH.SaleStaff.requiresAuth}
   },
+  {
+    path:PATH.PromotionMake.path,
+    component:PromotionMakeView,
+    name:"PromotionMakeView",
+    meta: { requiresAuth: PATH.PromotionMake.requiresAuth}
+  },
   //销售经理
   {
     path: PATH.SaleManager.path,
@@ -102,14 +108,6 @@ const routes = [
     name:"PromotionView",
     meta: { requiresAuth: PATH.PromotionView.requiresAuth}
   },
-    //促销策略指定
-  {
-    path:PATH.PromotionMake.path,
-    component:PromotionMakeView,
-    name:"PromotionMakeView",
-    meta: { requiresAuth: PATH.PromotionMake.requiresAuth}
-  },
-
 
   // -----------------------未找到页面-----------------------------
   {

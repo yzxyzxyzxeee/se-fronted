@@ -1,6 +1,9 @@
 <template>
   <Layout>
     <Title title="促销策略"></Title>
+
+    <el-button type="primary" size="medium" @click="dialogVisible = true">制定销售策略</el-button>
+
     <div class="body">
       <el-tabs v-model="activeName" :stretch="true">
         <el-tab-pane label="待一级审批" name="PENDING_LEVEL_1">
@@ -37,6 +40,25 @@
         </el-tab-pane>
       </el-tabs>
     </div>
+    <el-dialog
+        title="创建促销策略"
+        :visible.sync="dialogVisible"
+        width="40%"
+        :before-close="handleClose">
+      <div style="width: 90%; margin: 0 auto">
+        <el-form :model="promotionForm" label-width="100px" ref="promotionForm" :rules="rules">
+          <el-form-item label="策略编号: " prop="id">
+            <el-input v-model="promotionForm.id"></el-input>
+          </el-form-item>
+          <el-form-item label="策略方法 : " prop="type">
+            <el-input v-model="promotionForm.type"></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm('promotionForm')">立即创建</el-button>
+      </span>
+    </el-dialog>
   </Layout>
 </template>
 

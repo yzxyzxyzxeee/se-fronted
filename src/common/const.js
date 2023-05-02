@@ -28,7 +28,7 @@ export const PATH = {
   },
   PromotionMake:{
     path:'/promotion_make',
-    requiresAuth:[ROLE.SALE_STAFF]
+    requiresAuth:[ROLE.SALE_STAFF,ROLE.SALE_MANAGER,ROLE.GM]
   },
   // SALE_MANAGER
   SaleManager: {

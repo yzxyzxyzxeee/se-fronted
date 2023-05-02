@@ -33,9 +33,6 @@
           </el-col>
         </el-row>
         <el-row style="margin-top: 15px">
-          <el-col :span="24">
-            <span><strong>备注: </strong>{{item.remark}}</span>
-          </el-col>
         </el-row>
       </div>
     </el-card>
