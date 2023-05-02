@@ -18,7 +18,7 @@
           v-if="permit(PATH.InventoryManager.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
-            <span slot="title">InventoryManager</span>
+            <span slot="title">库存管理</span>
           </template>
         </el-submenu>
 
@@ -26,7 +26,7 @@
           v-if="permit(PATH.SaleStaff.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
-            <span slot="title">SaleStaff</span>
+            <span slot="title">销售</span>
           </template>
         </el-submenu>
 
@@ -34,7 +34,7 @@
           v-if="permit(PATH.SaleManager.requiresAuth)">
           <template slot="title">
             <i class="el-icon-sell"></i>
-            <span slot="title">SaleManager</span>
+            <span slot="title">销售经理</span>
           </template>
         </el-submenu>
 
@@ -42,7 +42,7 @@
                     v-if="permit(PATH.FinancialStaff.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
-            <span slot="title">FinancialStaff</span>
+            <span slot="title">财政</span>
           </template>
         </el-submenu>
 
