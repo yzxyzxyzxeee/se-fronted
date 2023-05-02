@@ -28,6 +28,13 @@
             <i class="el-icon-receiving"></i>
             <span slot="title">销售</span>
           </template>
+          <el-menu-item
+              :index="PATH.PromotionMake.path"
+              v-if="permit(PATH.PromotionMake.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">促销策略</span>
+          </el-menu-item>
         </el-submenu>
 
         <el-submenu index="3"
@@ -36,13 +43,20 @@
             <i class="el-icon-sell"></i>
             <span slot="title">销售经理</span>
           </template>
+          <el-menu-item
+              :index="PATH.PromotionView.path"
+              v-if="permit(PATH.PromotionView.requiresAuth)"
+          >
+            <i class="el-icon-receiving"></i>
+            <span slot="title">促销策略审批</span>
+          </el-menu-item>
         </el-submenu>
 
         <el-submenu index="4"
                     v-if="permit(PATH.FinancialStaff.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
-            <span slot="title">财政</span>
+            <span slot="title">财政管理</span>
           </template>
         </el-submenu>
 
@@ -50,7 +64,7 @@
                     v-if="permit(PATH.ADMIN_ACCOUNT_MANAGEMENT.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
-            <span slot="title">Admin 账户管理</span>
+            <span slot="title">账户管理</span>
           </template>
         </el-submenu>
 
@@ -67,6 +81,22 @@
           >
             <i class="el-icon-receipt"></i>
             <span slot="title">信息登记</span>
+          </el-menu-item>
+        </el-submenu>
+
+        <el-submenu index="7"
+                    v-if="permit(PATH.GM.requiresAuth)">
+          <template slot="title">
+            <i class="el-icon-receiving"></i>
+            <span slot="title">审批</span>
+          </template>
+
+          <el-menu-item
+              :index="PATH.PromotionView.path"
+              v-if="permit(PATH.PromotionView.requiresAuth)"
+          >
+            <i class="el-icon-receipt"></i>
+            <span slot="title">促销策略</span>
           </el-menu-item>
 
         </el-submenu>

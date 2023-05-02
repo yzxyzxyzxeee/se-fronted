@@ -26,6 +26,10 @@ export const PATH = {
     path: '/saleStaff',
     requiresAuth: [ROLE.SALE_STAFF]
   },
+  PromotionMake:{
+    path:'/promotion_make',
+    requiresAuth:[ROLE.SALE_STAFF]
+  },
   // SALE_MANAGER
   SaleManager: {
     path:'/saleManager',
@@ -40,6 +44,10 @@ export const PATH = {
   GM: {
     path: '/GM',
     requiresAuth: [ROLE.GM]
+  },
+  PromotionView:{
+    path:"/promotion",
+    requiresAuth:[ROLE.GM,ROLE.SALE_MANAGER]
   },
 
   // admin

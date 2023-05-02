@@ -18,7 +18,11 @@ const STAFF_CREATE = '/api/HR-create-user/create';
 const STAFF_CHECK_IN = '/api/checkIn/checkIn';
 const STAFF_QUERY = '/api/HR-create-user/showAll';
 
-
+//审批
+const PROMOTION_FIRST_APPROVAL = '/api/promotion/first-approval';
+const PROMOTION_SECOND_APPROVAL = '/api/promotion/second-approval';
+const PROMOTION_ALL = '/api/promotion/show_all';
+const PROMOTION_CREATE = '/api/promotion_make';
 module.exports = {
 
     STAFF_CREATE,
@@ -36,6 +40,11 @@ module.exports = {
     ACCOUNT_QUERY,
     ACCOUNT_CREATE,
     ACCOUNT_UPDATE,
-    ACCOUNT_DELETE
+    ACCOUNT_DELETE,
+
+    PROMOTION_FIRST_APPROVAL,
+    PROMOTION_SECOND_APPROVAL,
+    PROMOTION_ALL,
+    PROMOTION_CREATE
 
 };

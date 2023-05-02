@@ -13,7 +13,8 @@ const FinancialStaffView = () => import("../views/financialStaff/FinancialStaff"
 const SaleStaffView = () => import("../views/SaleStaff/SaleStaff");
 const SaleManagerView = () => import("../views/SaleManager/SaleManager");
 const InventoryManagerView = () => import("../views/InventoryManager/InventoryManager");
-
+const PromotionView = () =>import("../views/approval/PromotionView");
+const PromotionMakeView = () => import("../views/SaleStaff/PromotionMake");
 
 const StaffClockInView = () => import("../views/staff/staffClockInView")
 const StaffRegistrationView = () => import("../views/staff/staffRegistrationView")
@@ -46,7 +47,7 @@ const routes = [
     meta: { requiresAuth: PATH.ADMIN_ACCOUNT_MANAGEMENT.requiresAuth }
   },
 
-  // 审批
+  // GM
   {
     path: PATH.GM.path,
     component: Approval,
@@ -94,6 +95,20 @@ const routes = [
     name:"SaleManagerView",
     meta: { requiresAuth: PATH.InventoryManager.requiresAuth}
   },
+    //审批
+  {
+    path: PATH.PromotionView.path,
+    component:PromotionView,
+    name:"PromotionView",
+    meta: { requiresAuth: PATH.PromotionView.requiresAuth}
+  },
+    //促销策略指定
+  {
+    path:PATH.PromotionMake.path,
+    component:PromotionMakeView,
+    name:"PromotionMakeView",
+    meta: { requiresAuth: PATH.PromotionMake.requiresAuth}
+  },
 
 
   // -----------------------未找到页面-----------------------------
@@ -130,7 +145,7 @@ router.beforeEach(async (to, from, next) => {
       // console.log("获得访问权限");
       next()
     } else {
-      // console.log("无权限访问");
+      console.log("无权限访问");
       next("/"); //无权限,跳回主页
     }
   } else {
