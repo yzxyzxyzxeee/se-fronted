@@ -39,7 +39,7 @@ const routes = [
     component: () => import("@/views/auth/register.vue")
   },
 
-    //账户管理
+  //账户管理
   {
     path: PATH.ADMIN_ACCOUNT_MANAGEMENT.path,
     component: AccountManagement,
