@@ -39,7 +39,7 @@
           width="200">
         </el-table-column>
         <el-table-column
-          prop="job"
+          prop="role"
           label="工作岗位"
           width="100">
         </el-table-column>
@@ -117,6 +117,7 @@
               type="datetime">
             </el-date-picker>
           </el-form-item>
+
           <el-form-item label="手机" prop="phone">
             <el-input v-model="staffForm.phoneNumber"></el-input>
           </el-form-item>
@@ -202,10 +203,12 @@ export default {
         { id: 2, name: "female", value: 'female'},
       ],
       salaryWayList: [
-
-        { id: 1, name: "月薪制", value: 1},
-        { id: 2, name: "基本工资+提成的制度", value: 2},
-        { id: 3, name: "年薪制度", value: 3},
+        // 为1时是“库存人员和人力资源人员实行月薪制”
+        // 为2时是“销售人员实行基本工资+提成的制度”
+        // 为3时是“经理年薪制度”
+        { id: 1, name: "库存人员和人力资源人员实行月薪制", value: 1},
+        { id: 2, name: "销售人员实行基本工资+提成的制度", value: 2},
+        { id: 3, name: "经理年薪制度", value: 3},
       ],
       staffForm: {
         name: '',
@@ -255,7 +258,6 @@ export default {
         this.staffList = _res.result
       })
     },
-
     handleClose(done) {
       this.$confirm('确认关闭？')
         .then(_ => {
@@ -264,7 +266,6 @@ export default {
         })
         .catch(_ => {});
     },
-
     handleEdit(type) {
       if (type === false) {
         console.log("false!!!!!!false!!!!!!false!!!!!!false!!!!!!")
@@ -284,7 +285,6 @@ export default {
         })
       }
     },
-
     deleteStaff(id){
       let config = {
         params: {
@@ -304,6 +304,9 @@ export default {
             })
           }
           this.reload();
+        }).catch(err=>{
+          this.$message.error(err.message);
+          console.log(err);
         })
       }).catch(() => {
         this.$message({
@@ -331,7 +334,7 @@ export default {
     },
 
     submitForm(formName) {
-       this.$refs.staffForm.validate((valid) =>{
+       this.$refs[formName].validate((valid) => {
          if (valid) {
           let params = {
             name: this.staffForm.name,
@@ -343,18 +346,24 @@ export default {
             jobLevel: this.staffForm.jobLevel,
             jobSalary: this.staffForm.jobSalary,
             salaryCalculateWay: this.staffForm.salaryCalculateWay,
-            password: "123456",//初始密码
+            password: "123456",
           }
-           console.log(params);
-           createStaff(params).then(_res => {
+          let tmp = {
+            name: "caoxin11",
+            realName: "realname",
+            password: "123456",
+            job: "HR",
+            //gender: "male"
+          }
+          console.log(params);
+          createStaff(params).then(_res => {
             if (_res.msg === 'Success') {
               this.staffList.push(this.staffForm)
               this.$message.success('创建成功!')
-
               this.dialogVisible = false
               this.resetForm()
               //this.getStaff()
-            } else console.log(_res+"1111111111")
+            } else console.log(_res)
           })
         }
       })

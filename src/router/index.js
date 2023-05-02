@@ -13,7 +13,8 @@ const FinancialStaffView = () => import("../views/financialStaff/FinancialStaff"
 const SaleStaffView = () => import("../views/SaleStaff/SaleStaff");
 const SaleManagerView = () => import("../views/SaleManager/SaleManager");
 const InventoryManagerView = () => import("../views/InventoryManager/InventoryManager");
-
+const PromotionView = () =>import("../views/promotion/PromotionView");
+const PromotionMakeView = () => import("../views/promotion/PromotionView");
 
 const StaffClockInView = () => import("../views/staff/staffClockInView")
 const StaffRegistrationView = () => import("../views/staff/staffRegistrationView")
@@ -39,14 +40,14 @@ const routes = [
     component: () => import("@/views/auth/register.vue")
   },
 
-    //账户管理
+  //账户管理
   {
     path: PATH.ADMIN_ACCOUNT_MANAGEMENT.path,
     component: AccountManagement,
     meta: { requiresAuth: PATH.ADMIN_ACCOUNT_MANAGEMENT.requiresAuth }
   },
 
-  // 审批
+  // GM
   {
     path: PATH.GM.path,
     component: Approval,
@@ -80,6 +81,12 @@ const routes = [
     name:"SaleStaffView",
     meta: { requiresAuth: PATH.SaleStaff.requiresAuth}
   },
+  {
+    path:PATH.PromotionMake.path,
+    component:PromotionMakeView,
+    name:"PromotionMakeView",
+    meta: { requiresAuth: PATH.PromotionMake.requiresAuth}
+  },
   //销售经理
   {
     path: PATH.SaleManager.path,
@@ -94,7 +101,13 @@ const routes = [
     name:"SaleManagerView",
     meta: { requiresAuth: PATH.InventoryManager.requiresAuth}
   },
-
+    //审批
+  {
+    path: PATH.PromotionView.path,
+    component:PromotionView,
+    name:"PromotionView",
+    meta: { requiresAuth: PATH.PromotionView.requiresAuth}
+  },
 
   // -----------------------未找到页面-----------------------------
   {
@@ -130,7 +143,7 @@ router.beforeEach(async (to, from, next) => {
       // console.log("获得访问权限");
       next()
     } else {
-      // console.log("无权限访问");
+      console.log("无权限访问");
       next("/"); //无权限,跳回主页
     }
   } else {
