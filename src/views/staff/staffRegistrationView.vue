@@ -23,26 +23,26 @@
           label="姓名"
           width="100">
         </el-table-column>
-<!--        <el-table-column-->
-<!--          prop="gender"-->
-<!--          label="性别"-->
-<!--          width="50">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          prop="birth"-->
-<!--          label="出生日期"-->
-<!--          width="200">-->
-<!--        </el-table-column>-->
+        <el-table-column
+          prop="gender"
+          label="性别"
+          width="50">
+        </el-table-column>
+        <el-table-column
+          prop="birth"
+          label="出生日期"
+          width="200">
+        </el-table-column>
         <el-table-column
           prop="phoneNumber"
           label="手机"
           width="200">
         </el-table-column>
-<!--        <el-table-column-->
-<!--          prop="role"-->
-<!--          label="工作岗位"-->
-<!--          width="100">-->
-<!--        </el-table-column>-->
+        <el-table-column
+          prop="role"
+          label="工作岗位"
+          width="100">
+        </el-table-column>
         <el-table-column
           prop="baseSalary"
           label="基本工资"
@@ -58,33 +58,33 @@
           label="岗位级别"
           width="200">
         </el-table-column>
-<!--        <el-table-column-->
-<!--          prop="salaryCalculateWay"-->
-<!--          label="薪资计算方式"-->
-<!--          width="200">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          prop="salaryCalculateWay"-->
-<!--          label="薪资发放方式"-->
-<!--          width="150">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          label="操作">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-button-->
-<!--              @click.native.prevent="editStaff(scope.row.id)"-->
-<!--              type="text"-->
-<!--              size="small">-->
-<!--              编辑-->
-<!--            </el-button>-->
-<!--            <el-button-->
-<!--              @click="deleteStaff(scope.row.id)"-->
-<!--              type="text"-->
-<!--              size="small">-->
-<!--              删除-->
-<!--            </el-button>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
+        <el-table-column
+          prop="salaryCalculateWay"
+          label="薪资计算方式"
+          width="200">
+        </el-table-column>
+        <el-table-column
+          prop="salaryCalculateWay"
+          label="薪资发放方式"
+          width="150">
+        </el-table-column>
+        <el-table-column
+          label="操作">
+          <template slot-scope="scope">
+            <el-button
+              @click.native.prevent="editStaff(scope.row.id)"
+              type="text"
+              size="small">
+              编辑
+            </el-button>
+            <el-button
+              @click="deleteStaff(scope.row.id)"
+              type="text"
+              size="small">
+              删除
+            </el-button>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
 
@@ -203,12 +203,10 @@ export default {
         { id: 2, name: "female", value: 'female'},
       ],
       salaryWayList: [
-        // 为1时是“库存人员和人力资源人员实行月薪制”
-        // 为2时是“销售人员实行基本工资+提成的制度”
-        // 为3时是“经理年薪制度”
-        { id: 1, name: "库存人员和人力资源人员实行月薪制", value: 1},
-        { id: 2, name: "销售人员实行基本工资+提成的制度", value: 2},
-        { id: 3, name: "经理年薪制度", value: 3},
+
+        { id: 1, name: "月薪制", value: 1},
+        { id: 2, name: "基本工资+提成的制度", value: 2},
+        { id: 3, name: "年薪制度", value: 3},
       ],
       staffForm: {
         name: '',
@@ -348,15 +346,8 @@ export default {
             salaryCalculateWay: this.staffForm.salaryCalculateWay,
             password: "123456",
           }
-          let tmp = {
-            name: "caoxin11",
-            realName: "realname",
-            password: "123456",
-            job: "HR",
-            //gender: "male"
-          }
-          console.log(params);
-          createStaff(params).then(_res => {
+           console.log(params);
+           createStaff(params).then(_res => {
             if (_res.msg === 'Success') {
               this.staffList.push(this.staffForm)
               this.$message.success('创建成功!')
@@ -364,7 +355,7 @@ export default {
               this.dialogVisible = false
               this.resetForm()
               //this.getStaff()
-            } else console.log(_res)
+            } else console.log(_res+"1111111111")
           })
         }
       })

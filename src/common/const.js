@@ -54,6 +54,6 @@ export const PATH = {
   },
   STAFF_CLOCKIN_VIEW: {
     path: '/staffClockInView',
-    requiresAuth: [ROLE.HR, ROLE.ADMIN]
+    requiresAuth: [ROLE.HR, ROLE.ADMIN,ROLE.SALE_STAFF,ROLE.FINANCIAL_STAFF,ROLE.SALE_MANAGER,ROLE.INVENTORY_MANAGER,ROLE]
   }
 }
