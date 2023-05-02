@@ -15,7 +15,7 @@
         router
       >
         <el-submenu index="1"
-          v-if="permit(PATH.InventoryManager.requiresAuth)">
+                    v-if="permit(PATH.InventoryManager.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
             <span slot="title">库存管理</span>
@@ -23,7 +23,7 @@
         </el-submenu>
 
         <el-submenu index="2"
-          v-if="permit(PATH.SaleStaff.requiresAuth)">
+                    v-if="permit(PATH.SaleStaff.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
             <span slot="title">销售</span>
@@ -31,7 +31,7 @@
         </el-submenu>
 
         <el-submenu index="3"
-          v-if="permit(PATH.SaleManager.requiresAuth)">
+                    v-if="permit(PATH.SaleManager.requiresAuth)">
           <template slot="title">
             <i class="el-icon-sell"></i>
             <span slot="title">销售经理</span>
@@ -108,7 +108,8 @@ export default {
       PATH: PATH
     };
   },
-  mounted() {},
+  mounted() {
+  },
   computed: {
     getActivePath() {
       if (this.activePath == null) {
@@ -122,8 +123,8 @@ export default {
     }
   },
   methods: {
-    checkIn(){
-      this.$router.push("/staffClockInView")
+    checkIn() {
+      this.$router.push("/staffClockInView");
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -153,6 +154,7 @@ export default {
   padding: 16px;
   margin-bottom: 10px;
 }
+
 .title-inner {
   background-color: #9fa8da !important;
   border-color: #9fa8da !important;
@@ -163,13 +165,16 @@ export default {
   font-size: 21px;
   font-weight: bold;
 }
+
 .el-aside {
   background-color: #fff !important;
   margin-right: 10px;
 }
+
 .el-menu {
   border-right: solid 1px #fff;
 }
+
 .el-menu-item {
   width: 92%;
   margin: 0 auto;
@@ -178,23 +183,28 @@ export default {
   line-height: 40px;
   font-size: 13px;
 }
+
 .el-menu-item > i {
   margin-right: 30px !important;
 }
+
 .el-menu-item:focus,
 .el-menu-item:hover {
   outline: 0;
   background-color: #f6f6f6 !important;
 }
+
 .el-menu-item.is-active {
   color: #7e57c2;
   background-color: #f0ebf8 !important;
 }
+
 .logout-fix {
   position: fixed;
   left: 30px;
   bottom: 30px;
 }
+
 .logout-fix .logout-name {
   min-width: 60px;
   background-color: #7e57c2 !important;
@@ -210,14 +220,17 @@ export default {
   margin-bottom: 30px;
   cursor: pointer;
 }
+
 .logout-fix .logout {
   color: #00000099;
   font-size: 14px;
   cursor: pointer;
 }
+
 .logout-fix .logout:hover {
   color: #000000;
 }
+
 .logout111 {
   min-width: 60px;
   background-color: #cb0707 !important;
