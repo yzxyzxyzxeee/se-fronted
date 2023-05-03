@@ -19,6 +19,7 @@ const CustomerView = () => import("../views/customer/CustomerView");
 const StaffClockInView = () => import("../views/staff/staffClockInView");
 const StaffRegistrationView = () => import("../views/staff/staffRegistrationView");
 const Approval = () => import("../views/approval/Approval");
+const OutInfo = () => import("../views/staff/excelOut");
 
 Vue.use(VueRouter);
 
@@ -67,6 +68,11 @@ const routes = [
     component: StaffRegistrationView,
     name: "StaffRegistrationView",
     meta: { requiresAuth: PATH.STAFF_REGISTRATION_VIEW.requiresAuth }
+  },
+  {
+    path:PATH.EXCEL_OUT.path,
+    component:OutInfo,
+    meta:{ requiresAuth: PATH.EXCEL_OUT.requiresAuth }
   },
   //财政
   {

@@ -1,7 +1,7 @@
 <template>
   <layout>
-    <Title title="打卡信息导出"></Title>
-    <el-button type="primary" size="medium" @click="exportAsExcel">打卡</el-button>
+    <Title title="鎵撳崱淇℃伅瀵煎嚭"></Title>
+    <el-button type="primary" size="medium" @click="exportAsExcel">锟斤拷</el-button>
   </layout>
 </template>
 
@@ -27,19 +27,18 @@ export default {
   },
   mounted() {
     getClockIn().then(_res => {
-      console.log("打卡信息", _res);
+      console.log("鎵撳崱淇℃伅", _res);
       this.cur_list = _res.result;
     })
 
   },
   methods: {
     exportAsExcel() {
-      //TODO 导出Excel
       const data = XLSX.utils.json_to_sheet(this.cur_list);
       const wb = XLSX.utils.book_new()
       XLSX.utils.book_append_sheet(wb, data, 'data');
       XLSX.writeFile(wb,'ExportExcel.xlsx');
-      alert("导出成功");
+      alert("瀵煎嚭鎴愬姛");
     },
 
     handleClose(done) {

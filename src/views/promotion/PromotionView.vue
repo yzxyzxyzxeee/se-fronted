@@ -96,30 +96,35 @@ export default {
     console.log(this.promotionList.length)
     await getAllPromotion({}).then(_res => {
       this.promotionList = _res.result
-      this.pendingLevel1List = this.promotionList.filter(item => item.state === '待审批')
-      this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
-      this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
-      this.promotionList = this.promotionList.concat(_res.result)
+      // this.pendingLevel1List = this.promotionList.filter(item => item.state === '待审批')
+      // this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
+      // this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
+      this.pendingLevel1List = _res.result
+      this.successList = _res.result
+      this.failureList = _res.result
     })
   },
   methods: {
     getPromotion() {
-      // getAllPromotion({}).then(_res => {
-      //   this.promotionList = _res.result
-      //   this.$message.success(this.promotionList.length)
-      //   this.pendingLevel1List = this.promotionList.filter(item => item.state === '待审批')
-      //   this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
-      //   this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
+      getAllPromotion({}).then(_res => {
+        this.promotionList = _res.result
+        // this.$message.success(this.promotionList.length)
+        // this.pendingLevel1List = this.promotionList.filter(item => item.state === '待审批')
+        // this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
+        // this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
+        this.pendingLevel1List = _res.result
+        this.successList = _res.result
+        this.failureList = _res.result
+      })
+      // getAllPromotion({params:{state:'SUCCESS'}}).then(_res => {
+      //   this.successList= _res;
       // })
-      getAllPromotion({params:{state:'SUCCESS'}}).then(_res => {
-        this.successList= _res;
-      })
-      getAllPromotion({params:{state:'FAILURE'}}).then(_res => {
-        this.failureList= _res;
-      })
-      getAllPromotion({pragma:{state:"PENDING"}}).then(_res => {
-        this.pendingLevel1List = _res;
-      })
+      // getAllPromotion({params:{state:'FAILURE'}}).then(_res => {
+      //   this.failureList= _res;
+      // })
+      // getAllPromotion({pragma:{state:"PENDING"}}).then(_res => {
+      //   this.pendingLevel1List = _res;
+      // })
     },
     handleClose(done) {
       this.$confirm('确认关闭？')

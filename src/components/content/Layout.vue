@@ -109,6 +109,22 @@
           </el-menu-item>
         </el-submenu>
 
+        <el-submenu index="8"
+                    v-if="permit(PATH.EXCEL_OUT.requiresAuth)">
+          <template slot="title">
+            <i class="el-icon-receiving"></i>
+            <span slot="title">信息导出</span>
+          </template>
+
+          <el-menu-item
+              :index="PATH.EXCEL_OUT.path"
+              v-if="permit(PATH.EXCEL_OUT.requiresAuth)"
+          >
+            <i class="el-icon-receipt"></i>
+            <span slot="title">打卡信息导出</span>
+          </el-menu-item>
+        </el-submenu>
+
       </el-menu>
 
 
