@@ -11,7 +11,7 @@
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <purchase-list :list="pendingLevel1List" :fin="0" @refresh="getPromotion()"/>
+            <promotion-list :list="pendingLevel1List" :fin="0" @refresh="getPromotion()"/>
           </div>
         </el-tab-pane>
         <el-tab-pane label="审批完成" name="SUCCESS">
@@ -19,7 +19,7 @@
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <purchase-list :list="successList" :fin="1"/>
+            <promotion-list :list="successList" :fin="1"/>
           </div>
         </el-tab-pane>
         <el-tab-pane label="审批失败" name="FAILURE">
@@ -27,7 +27,7 @@
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <purchase-list :list="failureList" :fin="2"/>
+            <promotion-list :list="failureList" :fin="2"/>
           </div>
         </el-tab-pane>
       </el-tabs>
