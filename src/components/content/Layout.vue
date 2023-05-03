@@ -61,30 +61,18 @@
         </el-submenu>
 
         <el-submenu index="5"
-                    v-if="permit(PATH.ADMIN_ACCOUNT_MANAGEMENT.requiresAuth)">
+                    v-if="permit(PATH.STAFF_REGISTRATION_VIEW.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
-            <span slot="title">账户管理</span>
+            <span slot="title">信息管理</span>
           </template>
-        </el-submenu>
-
-        <el-submenu index="6"
-                    v-if="permit(PATH.STAFF_CLOCKIN_VIEW.requiresAuth)">
-          <template slot="title">
-            <i class="el-icon-receiving"></i>
-            <span slot="title">员工管理</span>
-          </template>
-
-          <el-menu-item
-            :index="PATH.STAFF_REGISTRATION_VIEW.path"
-            v-if="permit(PATH.STAFF_REGISTRATION_VIEW.requiresAuth)"
-          >
+          <el-menu-item>
             <i class="el-icon-receipt"></i>
             <span slot="title">信息登记</span>
           </el-menu-item>
         </el-submenu>
 
-        <el-submenu index="7"
+        <el-submenu index="6"
                     v-if="permit(PATH.GM.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
@@ -98,8 +86,24 @@
             <i class="el-icon-receipt"></i>
             <span slot="title">促销策略</span>
           </el-menu-item>
-
         </el-submenu>
+
+        <el-submenu index="7"
+                    v-if="permit(PATH.GM.requiresAuth)">
+          <template slot="title">
+            <i class="el-icon-receiving"></i>
+            <span slot="title">管理</span>
+          </template>
+
+          <el-menu-item
+              :index="PATH.CustomerView.path"
+              v-if="permit(PATH.CustomerView.requiresAuth)"
+          >
+            <i class="el-icon-receipt"></i>
+            <span slot="title">顾客管理</span>
+          </el-menu-item>
+        </el-submenu>
+
 
       </el-menu>
 

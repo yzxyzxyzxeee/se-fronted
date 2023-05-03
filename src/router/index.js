@@ -15,9 +15,9 @@ const SaleManagerView = () => import("../views/SaleManager/SaleManager");
 const InventoryManagerView = () => import("../views/InventoryManager/InventoryManager");
 const PromotionView = () =>import("../views/promotion/PromotionView");
 const PromotionMakeView = () => import("../views/promotion/PromotionView");
-
-const StaffClockInView = () => import("../views/staff/staffClockInView")
-const StaffRegistrationView = () => import("../views/staff/staffRegistrationView")
+const CustomerView = () => import("../views/custromer/CustomerView");
+const StaffClockInView = () => import("../views/staff/staffClockInView");
+const StaffRegistrationView = () => import("../views/staff/staffRegistrationView");
 const Approval = () => import("../views/approval/Approval");
 
 Vue.use(VueRouter);
@@ -107,6 +107,13 @@ const routes = [
     component:PromotionView,
     name:"PromotionView",
     meta: { requiresAuth: PATH.PromotionView.requiresAuth}
+  },
+    //顾客管理
+  {
+    path: PATH.CustomerView.path,
+    component:CustomerView,
+    name:"CustomerView",
+    meta:{requiresAuth: PATH.CustomerView.requiresAuth}
   },
 
   // -----------------------未找到页面-----------------------------

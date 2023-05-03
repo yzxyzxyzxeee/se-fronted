@@ -26,7 +26,7 @@
         <el-table-column
           prop="gender"
           label="性别"
-          width="60">
+          width="80">
         </el-table-column>
         <el-table-column
           prop="birth"
@@ -39,7 +39,7 @@
           width="200">
         </el-table-column>
         <el-table-column
-          prop="role"
+          prop="job"
           label="工作岗位"
           width="100">
         </el-table-column>
@@ -206,9 +206,9 @@ export default {
         // 为1时是“库存人员和人力资源人员实行月薪制”
         // 为2时是“销售人员实行基本工资+提成的制度”
         // 为3时是“经理年薪制度”
-        { id: 1, name: "库存人员和人力资源人员实行月薪制", value: 1},
-        { id: 2, name: "销售人员实行基本工资+提成的制度", value: 2},
-        { id: 3, name: "经理年薪制度", value: 3},
+        { id: 1, name: "月薪制", value: 1},
+        { id: 2, name: "基本工资+提成的制度", value: 2},
+        { id: 3, name: "年薪制度", value: 3},
       ],
       staffForm: {
         name: '',
