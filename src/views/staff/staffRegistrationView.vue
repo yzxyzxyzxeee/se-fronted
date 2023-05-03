@@ -23,15 +23,15 @@
           label="姓名"
           width="100">
         </el-table-column>
-        <el-table-column
-          prop="gender"
-          label="性别"
-          width="80">
-        </el-table-column>
+<!--        <el-table-column-->
+<!--          prop="gender"-->
+<!--          label="性别"-->
+<!--          width="80">-->
+<!--        </el-table-column>-->
         <el-table-column
           prop="birth"
           label="出生日期"
-          width="200">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="phoneNumber"
@@ -78,7 +78,7 @@
               编辑
             </el-button>
             <el-button
-              @click="deleteStaff(scope.row.id)"
+              @click="deleteStaff(staffForm.name)"
               type="text"
               size="small">
               删除
@@ -171,6 +171,28 @@
         <el-form-item label="姓名">
           <el-input v-model="editInfo.name" placeholder="请输入账户的姓名"></el-input>
         </el-form-item>
+        <el-form-item label="基本工资" prop="baseSalary">
+          <el-input v-model="staffForm.baseSalary"></el-input>
+        </el-form-item>
+        <el-form-item label="岗位工资" prop="jobSalary">
+          <el-input v-model="staffForm.jobSalary"></el-input>
+        </el-form-item>
+        <el-form-item label="岗位级别" prop="jobLevel">
+          <el-input v-model="staffForm.jobLevel"></el-input>
+        </el-form-item>
+        <el-form-item label="薪资计算方式" prop = "salaryCalculateWay">
+          <el-select v-model="staffForm.salaryCalculateWay">
+            <el-option
+              v-for="item in salaryWayList"
+              :key="item.id"
+              :label="item.name"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="薪资发放方式" prop="salaryProvideWay">
+          <el-input v-model="staffForm.salaryProvideWay"></el-input>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="handleEdit(false)">取 消</el-button>
@@ -186,8 +208,8 @@ import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
 
 
-import { createStaff, deleteStaffById, getAllStaff } from "@/network/staff";
-import {deleteById, updateAccount} from "@/network/account";
+import { createStaff, getAllStaff,deleteStaffByName } from "@/network/staff";
+import {updateAccount} from "@/network/account";
 
 
 export default {
@@ -203,9 +225,6 @@ export default {
         { id: 2, name: "female", value: 'female'},
       ],
       salaryWayList: [
-        // 为1时是“库存人员和人力资源人员实行月薪制”
-        // 为2时是“销售人员实行基本工资+提成的制度”
-        // 为3时是“经理年薪制度”
         { id: 1, name: "月薪制", value: 1},
         { id: 2, name: "基本工资+提成的制度", value: 2},
         { id: 3, name: "年薪制度", value: 3},
@@ -285,10 +304,10 @@ export default {
         })
       }
     },
-    deleteStaff(id){
+    deleteStaff(name){
       let config = {
         params: {
-          id: id
+          name:this.staffForm.name
         }
       };
       this.$confirm('是否要删除该账户？', '提示', {
@@ -296,7 +315,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        deleteStaffById(config).then(_res => {
+        deleteStaffByName(config).then(_res => {
           if (_res.msg === 'Success') {
             this.$message({
               type: 'success',

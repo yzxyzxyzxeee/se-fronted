@@ -23,8 +23,9 @@ const CUSTOMER_QUERY = '/api/customer/findByType';
 //HR
 const STAFF_CREATE = '/api/HR-create-user/create';
 const STAFF_CHECK_IN = '/api/checkIn/checkIn';
+const STAFF_GET_CHECK= '/api/checkIn/getCheckIn';
 const STAFF_QUERY = '/api/HR-create-user/showAll';
-const STAFF_DELETE='/api/HR-create-user/delete'
+const STAFF_DELETE='/api/HR-create-user/delete';
 
 //审批
 const PROMOTION_APPROVAL = '/api/promotion/approval';
@@ -36,6 +37,7 @@ module.exports = {
     STAFF_CHECK_IN,
     STAFF_QUERY,
     STAFF_DELETE,
+    STAFF_GET_CHECK,
 
 
     TEST_GET,
