@@ -6,7 +6,7 @@
 
     <div class="body">
       <el-tabs v-model="activeName" :stretch="true">
-        <el-tab-pane label="待一级审批" name="PENDING_LEVEL_1">
+        <el-tab-pane label="待审批" name="PENDING_LEVEL_1">
           <div v-if="pendingLevel1List.length === 0">
             <el-empty description="暂无数据"></el-empty>
           </div>

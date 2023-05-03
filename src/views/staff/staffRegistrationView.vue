@@ -186,7 +186,7 @@ import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
 
 
-import {createStaff, getAllStaff} from "@/network/staff";
+import { createStaff, deleteStaffById, getAllStaff } from "@/network/staff";
 import {deleteById, updateAccount} from "@/network/account";
 
 
@@ -296,7 +296,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        deleteById(config).then(_res => {
+        deleteStaffById(config).then(_res => {
           if (_res.msg === 'Success') {
             this.$message({
               type: 'success',

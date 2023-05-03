@@ -17,6 +17,7 @@ const ACCOUNT_DELETE = '/api/account/delete';
 const STAFF_CREATE = '/api/HR-create-user/create';
 const STAFF_CHECK_IN = '/api/checkIn/checkIn';
 const STAFF_QUERY = '/api/HR-create-user/showAll';
+const STAFF_DELETE='/api/HR-create-user/delete'
 
 //审批
 const PROMOTION_FIRST_APPROVAL = '/api/promotion/first-approval';
@@ -28,6 +29,7 @@ module.exports = {
     STAFF_CREATE,
     STAFF_CHECK_IN,
     STAFF_QUERY,
+    STAFF_DELETE,
 
 
     TEST_GET,
