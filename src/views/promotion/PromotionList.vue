@@ -1,10 +1,10 @@
 <template>
   <div class="card">
-    <el-card v-for="(item) in list"  :key="item.id" shadow="hover">
+    <el-card v-for="(item, index) in list"  :key="item.index" shadow="hover">
       <template #header>
         <el-row>
           <el-col :span="18">
-            <span><strong>id: </strong>{{item.id}}</span>
+<!--            <span><strong>id: </strong>{{item.id}}</span>-->
             <el-button v-if="authorization() === 2" style="margin-left: 10px"
               type="primary" icon="el-icon-check" circle size="mini" @click="approval(item.id)"></el-button>
             <el-button v-if="authorization() === 2"
@@ -22,7 +22,7 @@
             <span><strong>编号: </strong>{{item.id}}</span>
           </el-col>
           <el-col :span="3">
-            <span><strong>审批人员: </strong>{{item.operator}}</span>
+            <span><strong>操作人员: </strong>{{item.operator}}</span>
           </el-col>
           <el-col :span="6">
             <span><strong>优惠方式: </strong>{{item.type}}</span>
@@ -60,11 +60,11 @@ export default {
     approval(id) {
       let config = {
         params: {
-          purchaseSheetId: id,
-          state: this.fin === 1 ? "PENDING" : "SUCCESS"
+          id: id,
+          state: this.fin === 2 ? "PENDING" : "SUCCESS"
         }
       }
-      if (this.fin === 1) {
+      if (this.fin === 2) {
         Approval(config).then(res => {
           this.$emit("refresh")
           this.$message({
@@ -77,11 +77,11 @@ export default {
     deny(id) {
       let config = {
         params: {
-          purchaseSheetId: id,
+          id: id,
           state: "FAILURE"
         }
       }
-      if (this.fin === 0) {
+      if (this.fin === 2) {
         Approval(config).then(res => {
           this.$emit("refresh")
           this.$message({

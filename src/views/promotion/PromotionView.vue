@@ -7,11 +7,11 @@
     <div class="body">
       <el-tabs v-model="activeName" :stretch="true">
         <el-tab-pane label="待审批" name="PENDING_LEVEL_1">
-          <div v-if="pendingLevel1List.length === 0">
+          <div v-if="pendingLevel1List.length === 1">
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <promotion-list :list="pendingLevel1List" :fin="0" @refresh="getPromotion()"/>
+            <promotion-list :list="pendingLevel1List" :fin="2" @refresh="getPromotion()"/>
           </div>
         </el-tab-pane>
         <el-tab-pane label="审批完成" name="SUCCESS">
@@ -19,7 +19,7 @@
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <promotion-list :list="successList" :fin="1"/>
+            <promotion-list :list="successList" :fin="3"/>
           </div>
         </el-tab-pane>
         <el-tab-pane label="审批失败" name="FAILURE">
@@ -27,12 +27,11 @@
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <promotion-list :list="failureList" :fin="2"/>
+            <promotion-list :list="failureList" :fin="4"/>
           </div>
         </el-tab-pane>
       </el-tabs>
     </div>
-
     <el-dialog
         title="创建促销策略"
         :visible.sync="dialogVisible"
@@ -52,7 +51,6 @@
         <el-button type="primary" @click="submitForm('promotionForm')">立即创建</el-button>
       </span>
     </el-dialog>
-
   </Layout>
 </template>
 
@@ -63,7 +61,7 @@ import PromotionList from "./PromotionList"
 import {createPromotion, getAllPromotion} from "@/network/promotion";
 
 export default {
-  name: 'PurchaseView',
+  name: 'PromotionView',
   components: {
     Layout,
     Title,
@@ -77,7 +75,16 @@ export default {
       successList: [],
       failureList: [],
       dialogVisible: false,
-      promotionForm: {},
+      promotionForm: {
+        promotionSheetContent: [
+          {
+            id:'',
+            type:'',
+            operator:'',
+            state:''
+          }
+        ]
+      },
       rules: {
         supplier: [
           { required: true, message: '111', trigger: 'change' }
@@ -85,23 +92,33 @@ export default {
       },
     }
   },
-  mounted() {
-    this.getPromotion()
+ async mounted() {
+    console.log(this.promotionList.length)
+    await getAllPromotion({}).then(_res => {
+      this.promotionList = _res.result
+      this.pendingLevel1List = this.promotionList.filter(item => item.state === '待审批')
+      this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
+      this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
+      this.promotionList = this.promotionList.concat(_res.result)
+    })
   },
   methods: {
     getPromotion() {
-      getAllPromotion({params:{state:'PENDING'}}).then(_res => {
-        // this.promotionList = _res.result
-        // this.pendingLevel1List = this.promotionList.filter(item => item.state === 'PENDING')
-        // this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
-        // this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
-        this.pendingLevel1List= _res;
-      })
+      // getAllPromotion({}).then(_res => {
+      //   this.promotionList = _res.result
+      //   this.$message.success(this.promotionList.length)
+      //   this.pendingLevel1List = this.promotionList.filter(item => item.state === '待审批')
+      //   this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
+      //   this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
+      // })
       getAllPromotion({params:{state:'SUCCESS'}}).then(_res => {
         this.successList= _res;
       })
       getAllPromotion({params:{state:'FAILURE'}}).then(_res => {
         this.failureList= _res;
+      })
+      getAllPromotion({pragma:{state:"PENDING"}}).then(_res => {
+        this.pendingLevel1List = _res;
       })
     },
     handleClose(done) {
@@ -113,17 +130,16 @@ export default {
         .catch(_ => {});
     },
     submitForm(formName) {
-      console.log(this.promotionForm)
       this.$refs[formName].validate((valid) => {
         if (valid) {
-           //this.promotionForm.id = null
-           this.promotionForm.operator = sessionStorage.getItem("name")
-           //this.promotionForm.type = null
-           //this.promotionForm.state = null
-
+          // this.promotionForm.id = null
+          this.promotionForm.operator = sessionStorage.getItem("name")
+          // this.promotionForm.type = null
+          // this.promotionForm.state = null
+          this.promotionForm.promotionSheetContent.forEach((item) => {
+            item.id = parseInt(item.id)
+          })
           createPromotion(this.promotionForm).then(_res => {
-            console.log(this.promotionForm)
-
             console.log(_res)
             if (_res.msg === 'Success') {
               this.$message.success('创建成功!')
@@ -139,11 +155,14 @@ export default {
     },
     resetForm() {
       this.promotionForm = {
-
+        promotionSheetContent: [
+          {
             id: '',
             type: '',
             operator: '',
             state:''
+          }
+        ]
       }
     },
   }
