@@ -97,6 +97,12 @@ export default {
         // this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
         this.pendingLevel1List= _res;
       })
+      getAllPromotion({params:{state:'SUCCESS'}}).then(_res => {
+        this.successList= _res;
+      })
+      getAllPromotion({params:{state:'FAILURE'}}).then(_res => {
+        this.failureList= _res;
+      })
     },
     handleClose(done) {
       this.$confirm('确认关闭？')
