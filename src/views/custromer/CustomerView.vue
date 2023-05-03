@@ -23,12 +23,12 @@
             prop="type"
             label="类型"
             width="100"
-            :filters="[{ text: '供应商', value: '供应商' }, { text: '销售商', value: '销售商' }]"
+            :filters="[{ text: '供应商', value: 'SUPPLIER' }, { text: '销售商', value: 'SELLER' }]"
             :filter-method="filterTag"
             filter-placement="bottom-end">
           <template slot-scope="scope">
             <el-tag
-                :type="scope.row.type === '供应商' ? 'primary' : 'success'"
+                :type="scope.row.type === 'SUPPLIER' ? 'primary' : 'success'"
                 disable-transitions>{{scope.row.type}}</el-tag>
           </template>
         </el-table-column>
@@ -135,15 +135,15 @@
           <el-form-item label="邮箱: " prop="email">
             <el-input v-model="customerForm.email"></el-input>
           </el-form-item>
-          <el-form-item label="应收额度（元）: " prop="lineOfCredit">
-            <el-input v-model="customerForm.lineOfCredit"></el-input>
-          </el-form-item>
-          <el-form-item label="应收（元）: " prop="receivable">
-            <el-input v-model="customerForm.receivable"></el-input>
-          </el-form-item>
-          <el-form-item label="应付（元）: " prop="payable">
-            <el-input v-model="customerForm.payable"></el-input>
-          </el-form-item>
+<!--          <el-form-item label="应收额度（元）: " prop="lineOfCredit">-->
+<!--            <el-input v-model="customerForm.lineOfCredit"></el-input>-->
+<!--          </el-form-item>-->
+<!--          <el-form-item label="应收（元）: " prop="receivable">-->
+<!--            <el-input v-model="customerForm.receivable"></el-input>-->
+<!--          </el-form-item>-->
+<!--          <el-form-item label="应付（元）: " prop="payable">-->
+<!--            <el-input v-model="customerForm.payable"></el-input>-->
+<!--          </el-form-item>-->
 
         </el-form>
       </div>
@@ -193,9 +193,9 @@
         <el-form-item label="电子邮箱">
           <el-input v-model="editInfo.email" placeholder="请输入客户的电子邮箱"></el-input>
         </el-form-item>
-        <el-form-item label="应收额度" v-if="isGM">
-          <el-input v-model="editInfo.lineOfCredit" placeholder="请输入客户的应收额度"></el-input>
-        </el-form-item>
+<!--        <el-form-item label="应收额度" v-if="isGM">-->
+<!--          <el-input v-model="editInfo.lineOfCredit" placeholder="请输入客户的应收额度"></el-input>-->
+<!--        </el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="handleEdit(false)">取 消</el-button>
@@ -231,13 +231,13 @@ export default {
         address: '',
         zipcode: '',
         email: '',
-        lineOfCredit:'',
-        receivable:'',
-        payable:'',
+        // lineOfCredit:'',
+        // receivable:'',
+        // payable:'',
         operator:'',
 
       },
-      typeList: ['供应商', '销售商'],
+      typeList: ['SUPPLIER', 'SELLER'],
       editDialogVisible: false,
       editInfo: {},
     }
@@ -326,9 +326,9 @@ export default {
             address: '',
             zipcode: '',
             email: '',
-            lineOfCredit:'',
-            receivable:'',
-            payable:'',
+            // lineOfCredit:'',
+            // receivable:'',
+            // payable:'',
             operator:'',
           }
         ]
