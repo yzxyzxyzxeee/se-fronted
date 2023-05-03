@@ -32,6 +32,7 @@
         </el-tab-pane>
       </el-tabs>
     </div>
+
     <el-dialog
         title="创建促销策略"
         :visible.sync="dialogVisible"
@@ -51,6 +52,7 @@
         <el-button type="primary" @click="submitForm('promotionForm')">立即创建</el-button>
       </span>
     </el-dialog>
+
   </Layout>
 </template>
 
@@ -75,16 +77,7 @@ export default {
       successList: [],
       failureList: [],
       dialogVisible: false,
-      promotionForm: {
-        promotionSheetContent: [
-          {
-            id:'',
-            type:'',
-            operator:'',
-            state:''
-          }
-        ]
-      },
+      promotionForm: {},
       rules: {
         supplier: [
           { required: true, message: '111', trigger: 'change' }
@@ -97,11 +90,12 @@ export default {
   },
   methods: {
     getPromotion() {
-      getAllPromotion({}).then(_res => {
-        this.promotionList = _res.result
-        this.pendingLevel1List = this.promotionList.filter(item => item.state === 'PENDING')
-        this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
-        this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
+      getAllPromotion({params:{state:'PENDING'}}).then(_res => {
+        // this.promotionList = _res.result
+        // this.pendingLevel1List = this.promotionList.filter(item => item.state === 'PENDING')
+        // this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
+        // this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
+        this.pendingLevel1List= _res;
       })
     },
     handleClose(done) {
@@ -113,16 +107,17 @@ export default {
         .catch(_ => {});
     },
     submitForm(formName) {
+      console.log(this.promotionForm)
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          // this.promotionForm.id = null
-          this.promotionForm.operator = sessionStorage.getItem("name")
-          // this.promotionForm.type = null
-          // this.promotionForm.state = null
-          this.promotionForm.promotionSheetContent.forEach((item) => {
-            item.id = parseInt(item.id)
-          })
+           //this.promotionForm.id = null
+           this.promotionForm.operator = sessionStorage.getItem("name")
+           //this.promotionForm.type = null
+           //this.promotionForm.state = null
+
           createPromotion(this.promotionForm).then(_res => {
+            console.log(this.promotionForm)
+
             console.log(_res)
             if (_res.msg === 'Success') {
               this.$message.success('创建成功!')
@@ -138,14 +133,11 @@ export default {
     },
     resetForm() {
       this.promotionForm = {
-        promotionSheetContent: [
-          {
+
             id: '',
             type: '',
             operator: '',
             state:''
-          }
-        ]
       }
     },
   }
