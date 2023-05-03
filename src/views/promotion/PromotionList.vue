@@ -1,21 +1,17 @@
 <template>
   <div class="card">
-    <el-card v-for="item in list" :index="item.index" :key="item.id" shadow="hover">
+    <el-card v-for="(item, index) in list" :index="item.index" :key="item.id" shadow="hover">
       <template #header>
         <el-row>
           <el-col :span="18">
             <span><strong>id: </strong>{{item.id}}</span>
-            <el-button v-if="authorization() === 1" style="margin-left: 10px"
-              type="success" icon="el-icon-check" circle size="mini" @click="approval(item.id)"></el-button>
-            <el-button v-if="authorization() === 1"
-              type="danger" icon="el-icon-close" circle size="mini" @click="deny(item.id)"></el-button>
             <el-button v-if="authorization() === 2" style="margin-left: 10px"
               type="primary" icon="el-icon-check" circle size="mini" @click="approval(item.id)"></el-button>
             <el-button v-if="authorization() === 2"
               type="danger" icon="el-icon-close" circle size="mini" @click="deny(item.id)"></el-button>
             <span style="margin-left: 10px">
-              <el-tag v-if="type === 3" effect="dark" type='success'>审核通过</el-tag>
-              <el-tag v-if="type === 4" effect="dark" type='danger'>审核未通过</el-tag>
+              <el-tag v-if="fin === 3" effect="dark" type='success'>审核通过</el-tag>
+              <el-tag v-if="fin === 4" effect="dark" type='danger'>审核未通过</el-tag>
             </span>
           </el-col>
         </el-row>
@@ -40,12 +36,12 @@
 </template>
 
 <script>
-import { firstApproval, secondApproval } from '../../network/promotion'
+import { Approval} from '../../network/promotion'
 export default {
   name: "PromotionList",
   props: {
     list: Array,
-    type: Number,
+    fin: Number,
   },
   data() {
     return {
@@ -57,9 +53,7 @@ export default {
   },
   methods: {
     authorization() {
-      if (this.type === 1 && sessionStorage.getItem('role') === 'SALE_MANAGER') {
-        return 1
-      } else if (this.type === 2 && sessionStorage.getItem('role') === 'GM') {
+      if (this.fin === 2 && sessionStorage.getItem('role') === 'GM') {
         return 2
       }
     },
@@ -67,19 +61,11 @@ export default {
       let config = {
         params: {
           purchaseSheetId: id,
-          state: this.type === 1 ? 'PENDING_LEVEL_2' : 'SUCCESS'
+          state: this.fin === 1 ? "PENDING" : "SUCCESS"
         }
       }
-      if (this.type === 1) {
-        firstApproval(config).then(res => {
-          this.$emit("refresh")
-          this.$message({
-            message: '操作成功!',
-            type: 'success'
-          })
-        })
-      } else {
-        secondApproval(config).then(res => {
+      if (this.fin === 1) {
+        Approval(config).then(res => {
           this.$emit("refresh")
           this.$message({
             message: '操作成功!',
@@ -92,19 +78,11 @@ export default {
       let config = {
         params: {
           purchaseSheetId: id,
-          state: 'FAILURE'
+          state: "FAILURE"
         }
       }
-      if (this.type === 1) {
-        firstApproval(config).then(res => {
-          this.$emit("refresh")
-          this.$message({
-            message: '操作成功!',
-            type: 'success'
-          })
-        })
-      } else {
-        secondApproval(config).then(res => {
+      if (this.fin === 0) {
+        Approval(config).then(res => {
           this.$emit("refresh")
           this.$message({
             message: '操作成功!',

@@ -43,21 +43,21 @@ export const PATH = {
   // GM
   GM: {
     path: '/GM',
-    requiresAuth: [ROLE.GM]
+    requiresAuth: [ROLE.GM,ROLE.ADMIN]
   },
   PromotionView:{
     path:"/promotion",
-    requiresAuth:[ROLE.GM,ROLE.SALE_MANAGER]
+    requiresAuth:[ROLE.GM,ROLE.SALE_MANAGER,ROLE.ADMIN]
   },
   CustomerView:{
     path:"/customerView",
-    requiresAuth:[ROLE.GM]
+    requiresAuth:[ROLE.GM,ROLE.ADMIN]
   },
 
   // admin
-  ADMIN_ACCOUNT_MANAGEMENT:{
-    path: '/accountManagement',
-    requiresAuth: [ROLE.ADMIN,ROLE.GM]
+  ADMIN:{
+    path: '/adminView',
+    requiresAuth: [ROLE.ADMIN]
   },
   //HR
   STAFF_REGISTRATION_VIEW: {

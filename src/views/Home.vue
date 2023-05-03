@@ -10,7 +10,7 @@ import { ROLE, PATH } from "../common/const";
       let role = sessionStorage.getItem("role");
       console.log(role)
       if(role === ROLE.ADMIN) {
-        this.$router.push(PATH.ADMIN_ACCOUNT_MANAGEMENT.path);
+        this.$router.push(PATH.ADMIN.path);
       } else if(role === ROLE.INVENTORY_MANAGER) {
         this.$router.push(PATH.InventoryManager.path);
       } else if (role === ROLE.SALE_STAFF ) {

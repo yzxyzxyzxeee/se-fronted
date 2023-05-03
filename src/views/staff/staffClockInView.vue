@@ -28,7 +28,7 @@ export default {
         name: this.Form.name,
       }
       let job = sessionStorage.getItem("role")
-      if (job !== "GM") {
+      if (job !== "GM" && job !== "ADMIN") {
         this.$message.success('打卡成功')
         checkIn(param).then(_res => {
           if(_res.msg === 'Success') {

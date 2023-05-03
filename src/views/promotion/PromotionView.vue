@@ -11,15 +11,7 @@
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <purchase-list :list="pendingLevel1List" :type="1" @refresh="getPromotion()"/>
-          </div>
-        </el-tab-pane>
-        <el-tab-pane label="待二级审批" name="PENDING_LEVEL_2">
-          <div v-if="pendingLevel2List.length === 0">
-            <el-empty description="暂无数据"></el-empty>
-          </div>
-          <div v-else>
-            <purchase-list :list="pendingLevel2List" :type="2" @refresh="getPromotion()"/>
+            <purchase-list :list="pendingLevel1List" :fin="0" @refresh="getPromotion()"/>
           </div>
         </el-tab-pane>
         <el-tab-pane label="审批完成" name="SUCCESS">
@@ -27,7 +19,7 @@
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <purchase-list :list="successList" :type="3"/>
+            <purchase-list :list="successList" :fin="1"/>
           </div>
         </el-tab-pane>
         <el-tab-pane label="审批失败" name="FAILURE">
@@ -35,7 +27,7 @@
             <el-empty description="暂无数据"></el-empty>
           </div>
           <div v-else>
-            <purchase-list :list="failureList" :type="4"/>
+            <purchase-list :list="failureList" :fin="2"/>
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -80,15 +72,16 @@ export default {
       activeName: 'PENDING_LEVEL_1',
       promotionList: [],
       pendingLevel1List: [],
-      pendingLevel2List: [],
       successList: [],
       failureList: [],
       dialogVisible: false,
       promotionForm: {
         promotionSheetContent: [
           {
-            id: '',
-            type: '',
+            id:'',
+            type:'',
+            operator:'',
+            state:''
           }
         ]
       },
@@ -99,14 +92,16 @@ export default {
       },
     }
   },
+  mounted() {
+    this.getPromotion()
+  },
   methods: {
     getPromotion() {
       getAllPromotion({}).then(_res => {
         this.promotionList = _res.result
-        this.pendingLevel1List = this.promotionList.filter(item => item.state === '待一级审批')
-        this.pendingLevel2List = this.promotionList.filter(item => item.state === '待二级审批')
-        this.successList = this.promotionList.filter(item => item.state === '审批完成')
-        this.failureList = this.promotionList.filter(item => item.state === '审批失败')
+        this.pendingLevel1List = this.promotionList.filter(item => item.state === 'PENDING')
+        this.successList = this.promotionList.filter(item => item.state === 'SUCCESS')
+        this.failureList = this.promotionList.filter(item => item.state === 'FAILURE')
       })
     },
     handleClose(done) {
@@ -120,12 +115,11 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.promotionForm.id = null
+          // this.promotionForm.id = null
           this.promotionForm.operator = sessionStorage.getItem("name")
-          this.promotionForm.type = null
-          this.promotionForm.state = null
+          // this.promotionForm.type = null
+          // this.promotionForm.state = null
           this.promotionForm.promotionSheetContent.forEach((item) => {
-            item.purchaseSheetId = null
             item.id = parseInt(item.id)
           })
           createPromotion(this.promotionForm).then(_res => {
@@ -147,7 +141,9 @@ export default {
         promotionSheetContent: [
           {
             id: '',
-            type: ''
+            type: '',
+            operator: '',
+            state:''
           }
         ]
       }

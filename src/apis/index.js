@@ -13,7 +13,7 @@ const ACCOUNT_UPDATE = '/api/account/update';
 const ACCOUNT_DELETE = '/api/account/delete';
 
 
-//顾客管理
+//客户管理
 const CUSTOMER_CREATE = '/api/CustomerManage/register';
 const CUSTOMER_UPDATE = '/api/customer/update';
 const CUSTOMER_DELETE = '/api/CustomerManage/delete';
@@ -27,10 +27,9 @@ const STAFF_QUERY = '/api/HR-create-user/showAll';
 const STAFF_DELETE='/api/HR-create-user/delete'
 
 //审批
-const PROMOTION_FIRST_APPROVAL = '/api/promotion/first-approval';
-const PROMOTION_SECOND_APPROVAL = '/api/promotion/second-approval';
-const PROMOTION_CREATE = '/api/promotion/promotion';
-const PROMOTION_ALL= '/api/promotion/getPromotion';
+const PROMOTION_APPROVAL = '/api/promotion/approval';
+const PROMOTION_CREATE = '/api/promotion/promotion-make';
+const PROMOTION_ALL= '/api/promotion/get-show';
 module.exports = {
 
     STAFF_CREATE,
@@ -51,8 +50,7 @@ module.exports = {
     ACCOUNT_UPDATE,
     ACCOUNT_DELETE,
 
-    PROMOTION_FIRST_APPROVAL,
-    PROMOTION_SECOND_APPROVAL,
+    PROMOTION_APPROVAL,
     PROMOTION_ALL,
     PROMOTION_CREATE,
 

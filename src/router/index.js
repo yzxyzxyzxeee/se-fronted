@@ -8,14 +8,14 @@ import FinancialStaff from "@/views/financialStaff/FinancialStaff";
 const Error = () => import("../components/content/Error");
 const Login = () => import("../views/auth/Login");
 const Home = () => import("../views/Home");
-const AccountManagement = () => import("../views/account/AccountManagement");
+const AdminView = () => import("../views/admin/Admin");
 const FinancialStaffView = () => import("../views/financialStaff/FinancialStaff");
 const SaleStaffView = () => import("../views/SaleStaff/SaleStaff");
 const SaleManagerView = () => import("../views/SaleManager/SaleManager");
 const InventoryManagerView = () => import("../views/InventoryManager/InventoryManager");
 const PromotionView = () =>import("../views/promotion/PromotionView");
 const PromotionMakeView = () => import("../views/promotion/PromotionView");
-const CustomerView = () => import("../views/custromer/CustomerView");
+const CustomerView = () => import("../views/customer/CustomerView");
 const StaffClockInView = () => import("../views/staff/staffClockInView");
 const StaffRegistrationView = () => import("../views/staff/staffRegistrationView");
 const Approval = () => import("../views/approval/Approval");
@@ -40,11 +40,12 @@ const routes = [
     component: () => import("@/views/auth/register.vue")
   },
 
-  //账户管理
+  //Admin
   {
-    path: PATH.ADMIN_ACCOUNT_MANAGEMENT.path,
-    component: AccountManagement,
-    meta: { requiresAuth: PATH.ADMIN_ACCOUNT_MANAGEMENT.requiresAuth }
+    path: PATH.ADMIN.path,
+    component: AdminView,
+    name:"AdminView",
+    meta: { requiresAuth: PATH.ADMIN.requiresAuth }
   },
 
   // GM
