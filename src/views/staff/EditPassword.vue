@@ -47,13 +47,17 @@ export default {
         ]
       },
       Form:{
-        name: sessionStorage.getItem("name"),
-        oldPassword:"",
-        newPassword:"",
-        confirmPassword:""
+        name: '',
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: ""
       }
 
     }
+  },
+  mounted() {
+    let name1 = sessionStorage.getItem("name")
+    this.Form.name = name1
   },
   //存放 方法
   methods: {

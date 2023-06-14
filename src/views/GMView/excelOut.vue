@@ -12,17 +12,17 @@
 
         <el-table-column property="name" label="用户名" min-width="13%">
         </el-table-column>
-        <el-table-column prop="year" label="年" min-width="12%">
+        <el-table-column prop="year" label="月" min-width="12%">
         </el-table-column>
-        <el-table-column prop="month" label="月" min-width="12%">
+        <el-table-column prop="month" label="团队合作意识" min-width="12%">
         </el-table-column>
-        <el-table-column prop="day" label="日" min-width="12%">
+        <el-table-column prop="day" label="自主学习能力" min-width="12%">
         </el-table-column>
-        <el-table-column prop="hour" label="时" min-width="12%">
+        <el-table-column prop="hour" label="创造性和灵活性" min-width="12%">
         </el-table-column>
-        <el-table-column prop="minute" label="分" min-width="12%">
+        <el-table-column prop="minute" label="工作能力" min-width="12%">
         </el-table-column>
-        <el-table-column prop="second" label="秒" min-width="12%">
+        <el-table-column prop="second" label="出勤率" min-width="12%">
         </el-table-column>
       </el-table>
     </div>
@@ -34,7 +34,7 @@ import Layout from "@/components/content/Layout";
 import Title from "@/components/content/Title";
 // import XLSX from 'xlsx';
 import * as XLSX from 'xlsx'
-import { getClockIn } from "@/network/staff";
+import { getClockIn } from "@/network/gm";
 
 export default {
   components: {

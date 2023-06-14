@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       staffForm: {
-        name: sessionStorage.getItem("name"),
+        name: '',
         gender: '',
         birth: '',
         phoneNumber: '',
@@ -68,9 +68,7 @@ export default {
 
   },
   async mounted() {
-    // await getStaffByName(name).then(_res => {
-    //   this.staffForm = this.staffForm.concat(_res.result)
-    // })
+    this.staffForm.name = sessionStorage.getItem("name")
     await this.getStaff()
   },
 }

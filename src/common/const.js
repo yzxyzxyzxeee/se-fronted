@@ -12,7 +12,7 @@ export const ROLE = {
 export const PATH = {
   // GM
   GM: {
-    path: '/GM',
+    path: '/GMView',
     requiresAuth: [ROLE.GM,ROLE.ADMIN]
   },
   // admin
@@ -20,18 +20,27 @@ export const PATH = {
     path: '/adminView',
     requiresAuth: [ROLE.ADMIN]
   },
-  STAFF:{
-    path:'/staffView',
+  //员工
+  STAFF: {
+    path:"/staffView",
     requiresAuth:[ROLE.STAFF]
   },
+  //添加主管信息
   STAFF_REGISTRATION_VIEW: {
     path: '/staffRegistrationView',
     requiresAuth: [ROLE.ADMIN]
   },
+  //添加绩效
+  PERFORMANCE_ADD:{
+    path:"addPerformance",
+    requiresAuth:[ROLE.GM]
+  },
+  //绩效导入
   PERFORMANCE_IN: {
     path: "/performanceInView",
     requiresAuth:[ROLE.ADMIN]
   },
+  //主管信息导入
   STAFF_IN: {
     path: "/StaffInView",
     requiresAuth:[ROLE.ADMIN]
@@ -43,14 +52,20 @@ export const PATH = {
   },
   // 改密码
   EDIT_PASSWORD_VIEW:{
-    path:"/editPasswordView",
+    path:"/eidtpasswordView",
     requiresAuth:[ROLE.GM,ROLE.STAFF,ROLE.ADMIN]
+  },
+  //查看绩效
+  SHOW_PERFORMANCE:{
+    path:"/PerformanceShow",
+    requiresAuth:[ROLE.STAFF]
   },
   //导出绩效
   EXCEL_OUT: {
     path: '/excelOut',
     requiresAuth: [ROLE.GM]
   },
+  //查看个人信息
   STAFF_INFO:{
     path: "/staffInfoView",
     requiresAuth: [ROLE.STAFF]
