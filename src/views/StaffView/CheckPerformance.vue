@@ -23,18 +23,18 @@
         <el-card style="height: 260px">
           <div ref="what" style="height: 260px">
             <el-table
-                height="250"
-                :data="tableData"
-                style="width: 100%">
+              height="250"
+              :data="tableData"
+              style="width: 100%">
               <el-table-column
-                  prop="project"
-                  label="绩效项目"
-                  width="100">
+                prop="project"
+                label="绩效项目"
+                width="100">
               </el-table-column>
               <el-table-column
-                  prop="score"
-                  label="分数"
-                  width="80">
+                prop="score"
+                label="分数"
+                width="80">
               </el-table-column>
             </el-table>
 
@@ -58,9 +58,8 @@
 </template>
 
 <script>
-import { getData,getMonthData } from '../api'
 import * as echarts from 'echarts'
-import {getPerformanceByname} from "@/network/staff";
+import { getPerformanceByName } from "@/network/staff";
 export default {
   data(){
     return{
@@ -80,7 +79,7 @@ export default {
   methods:{
     onSubmit(){
       //折线图数据
-      getData({params: {...this.form}}).then(({data}) => {
+      getPerformanceByName(this.form).then(({data}) => {
         //基于准备好的dom，初始化echats实例
         this.gData=data
         console.log(this.gData,"onsubmit_gData")
@@ -127,8 +126,11 @@ export default {
 
     let name1=sessionStorage.getItem("name")
     this.form.name=name1
-    getPerformanceByname({params: {...this.form}}).then(({data}) => {
+    this.form.month = 5
+    console.log(this.form)
+    getPerformanceByName(this.form).then(({data}) => {
       this.gData=data
+
       console.log(this.gData.data1.value[0],"mounted_gData")
       console.log({...this.form},"lyh")
 
@@ -267,82 +269,3 @@ export default {
 }
 </script>
 
-
-<style lang="less" scoped>
-.user {
-  padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
-  display: flex;
-  align-items: center;
-  img {
-    margin-right: 40px;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
-  .userinfo {
-    .name {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    .access {
-      color: #999999;
-    }
-  }
-}
-.login-info {
-  p {
-    line-height: 28px;
-    font-size: 14px;
-    color: #999999;
-    span {
-      color: #666666;
-      margin-left: 60px;
-    }
-  }
-}
-.num {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  .icon {
-    width: 80px;
-    height: 80px;
-    font-size: 30px;
-    text-align: center;
-    line-height: 80px;
-    color: #fff;
-  }
-  .detail {
-    margin-left: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    .price {
-      font-size: 30px;
-      margin-bottom: 10px;
-      line-height: 30px;
-      height: 30px;
-    }
-    .desc {
-      font-size: 14px;
-      color: #999;
-      text-align: center;
-    }
-  }
-  .el-card {
-    width: 32%;
-    margin-bottom: 20px;
-  }
-}
-.graph {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  .el-card {
-    width: 48%;
-  }
-}
-</style>

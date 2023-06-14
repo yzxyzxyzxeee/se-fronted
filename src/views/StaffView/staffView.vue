@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <Title title="员工 首页"></Title>
+    <Title title="职员 首页"></Title>
 
   </Layout>
 </template>

@@ -1,9 +1,8 @@
 <template>
-  <div class="logout-name">{{ getUsername() }}</div>
   <Layout>
     <div style="margin-top: 10px">
       <el-table
-          :data="staffForm"
+          :data="a"
           stripe
           style="width: 100%"
           :header-cell-style="{'text-align':'center'}"
@@ -40,8 +39,10 @@
 
 <script>
 import { getStaffByName} from "@/network/staff";
+import Layout from "@/components/content/Layout.vue";
 export default {
   name: 'StaffInfoView',
+  components: { Layout },
   //存放 数据
   data() {
     return {
@@ -51,7 +52,8 @@ export default {
         birth: '',
         phoneNumber: '',
         job: '',
-      }
+      },
+      a:[]
     }
   },
   //存放 方法
@@ -63,13 +65,20 @@ export default {
       let name = sessionStorage.getItem("name")
       getStaffByName(name).then(_res => {
         this.staffForm = _res.result
+        console.log(this.staffForm)
       })
     }
 
   },
   async mounted() {
     this.staffForm.name = sessionStorage.getItem("name")
-    await this.getStaff()
+    let name = sessionStorage.getItem("name")
+    console.log(name,"name")
+    await getStaffByName({name:name}).then(_res => {
+      console.log("11111111")
+      this.staffForm = _res.result
+      this.a.push(this.staffForm)
+    })
   },
 }
 </script>

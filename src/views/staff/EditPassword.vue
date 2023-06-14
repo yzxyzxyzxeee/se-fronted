@@ -67,7 +67,7 @@ export default {
           let name = this.Form.name;
           let oldPassword = this.Form.oldPassword;
           let newPassword = this.Form.newPassword;
-          ediePas(name,oldPassword,newPassword).then(
+          ediePas(this.Form).then(
               _res => {
                 if(_res.message === 'Success'){
                   this.$message.success('修改成功,请重新登录');

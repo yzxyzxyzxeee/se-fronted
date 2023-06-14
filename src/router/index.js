@@ -17,6 +17,7 @@ const gmView = () => import("../views/GMView/gmView");
 const OutInfo = () => import("../views/GMView/excelOut");
 const EditPassword =() => import("../views/staff/EditPassword");
 const StaffInFo =() => import("../views/StaffView/StaffInfo");
+const ShowPerformance =() => import("../views/StaffView/CheckPerformance.vue");
 
 Vue.use(VueRouter);
 
@@ -87,6 +88,11 @@ const routes = [
     path: PATH.STAFF_INFO.path,
     component:StaffInFo,
     meta: {requiresAuth: PATH.STAFF_INFO.requiresAuth}
+  },
+  {
+    path:PATH.SHOW_PERFORMANCE.path,
+    component:ShowPerformance,
+    meta: {requiresAuth: PATH.SHOW_PERFORMANCE.requiresAuth}
   },
   // -----------------------未找到页面-----------------------------
   {

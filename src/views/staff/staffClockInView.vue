@@ -29,10 +29,10 @@ export default {
       }
       let job = sessionStorage.getItem("role")
       if (job === "STAFF") {
-        this.$message.success('打卡成功')
+
         checkIn(param).then(_res => {
           if(_res.msg === 'Success') {
-
+            this.$message.success('打卡成功')
           } else this.$message.success('打卡失败')
         })
       } else {
