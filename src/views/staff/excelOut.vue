@@ -1,7 +1,7 @@
 <template>
   <layout>
     <Title title="打卡信息导出"></Title>
-    <el-button type="primary" size="medium" @click="exportAsExcel">��</el-button>
+    <el-button type="primary" size="medium" @click="exportAsExcel">信息导出</el-button>
   </layout>
 </template>
 
@@ -27,7 +27,7 @@ export default {
   },
   mounted() {
     getClockIn().then(_res => {
-      console.log("打卡信息", _res);
+      console.log("打卡信息", _res.result);
       this.cur_list = _res.result;
     })
 

@@ -116,15 +116,18 @@ export default {
         this.successList = _res.result
         this.failureList = _res.result
       })
-      // getAllPromotion({params:{state:'SUCCESS'}}).then(_res => {
-      //   this.successList= _res;
-      // })
-      // getAllPromotion({params:{state:'FAILURE'}}).then(_res => {
-      //   this.failureList= _res;
-      // })
-      // getAllPromotion({pragma:{state:"PENDING"}}).then(_res => {
-      //   this.pendingLevel1List = _res;
-      // })
+      getAllPromotion({params:{state:'SUCCESS'}}).then(_res => {
+        console.log(this.successList.length)
+        this.successList= _res;
+      })
+      getAllPromotion({params:{state:'FAILURE'}}).then(_res => {
+        console.log(this.failureList.length)
+        this.failureList= _res;
+      })
+      getAllPromotion({pragma:{state:"PENDING"}}).then(_res => {
+        console.log(this.pendingLevel1List.length)
+        this.pendingLevel1List = _res;
+      })
     },
     handleClose(done) {
       this.$confirm('确认关闭？')

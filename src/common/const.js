@@ -70,6 +70,6 @@ export const PATH = {
   },
   EXCEL_OUT: {
     path: '/excelOut',
-    requiresAuth: [ROLE.HR, ROLE.ADMIN,ROLE.SALE_STAFF,ROLE.FINANCIAL_STAFF,ROLE.SALE_MANAGER,ROLE.INVENTORY_MANAGER,ROLE.GM]
+    requiresAuth: [ROLE.ADMIN,ROLE.GM]
   }
 }
