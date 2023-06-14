@@ -20,6 +20,10 @@ export const PATH = {
     path: '/adminView',
     requiresAuth: [ROLE.ADMIN]
   },
+  STAFF:{
+    path:'/staffView',
+    requiresAuth:[ROLE.STAFF]
+  },
   STAFF_REGISTRATION_VIEW: {
     path: '/staffRegistrationView',
     requiresAuth: [ROLE.ADMIN]
@@ -39,7 +43,7 @@ export const PATH = {
   },
   // 改密码
   EDIT_PASSWORD_VIEW:{
-    path:"/eidtpasswordView",
+    path:"/editPasswordView",
     requiresAuth:[ROLE.GM,ROLE.STAFF,ROLE.ADMIN]
   },
   //导出绩效

@@ -30,19 +30,13 @@
           </el-menu-item>
 
           <el-menu-item
-              :index="PATH.STAFF_INFO.path"
+              :index="PATH.SHOW.path"
               v-if="permit(PATH.STAFF_INFO.requiresAuth)"
           >
             <i class="el-icon-receipt"></i>
             <span slot="title">个人绩效查看</span>
           </el-menu-item>
-          <el-menu-item
-              :index="PATH.EDIT_PASSWORD_VIEW.path"
-              v-if="permit(PATH.EDIT_PASSWORD_VIEW.requiresAuth)"
-          >
-            <i class="el-icon-receipt"></i>
-            <span slot="title">密码修改</span>
-          </el-menu-item>
+
         </el-submenu>
 
         <el-submenu index="6"
@@ -94,8 +88,9 @@
           <div class="logout-name">{{ getUsername() }}</div>
         </el-tooltip>
         <div class="logout111" @click="checkIn()">打卡</div>
+        <div class="logout-name" @click="editPassword()">修改密码</div>
         <div class="logout" @click="logout()">退出登录</div>
-        <div class="logout111" @click="editPassword()">修改密码</div>
+
       </div>
     </el-aside>
 
@@ -157,7 +152,7 @@ export default {
       return arr.some(role => role === sessionStorage.getItem("role"));
     },
     editPassword(){
-      this.$router.push("/eidtpasswordView");
+      this.$router.push("/editPasswordView");
     }
   }
 };

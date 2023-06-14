@@ -1,14 +1,14 @@
 <template>
-  <el-form :model="form" ref="pwdForm" :rules="rules">
-    <el-form-item label="原密码" prop="password">
-      <el-input v-model="form.oldPassword" placeholder="请输入旧密码" type="password" ></el-input>
+  <el-form :model="Form" ref="pwdForm" :rules="rules">
+    <el-form-item label="原密码" prop="oldPassword">
+      <el-input v-model="Form.oldPassword" placeholder="请输入旧密码" type="password" ></el-input>
     </el-form-item>
     <el-form-item label="新密码" prop="newPassword">
-      <el-input v-model="form.newPassword" placeholder="请输入新密码" type="password"></el-input>
+      <el-input v-model="Form.newPassword" placeholder="请输入新密码" type="password"></el-input>
     </el-form-item>
 
     <el-form-item label="确认密码" prop="checkPassword">
-      <el-input v-model="form.confirmPassword" placeholder="请确认密码" type="password"></el-input>
+      <el-input v-model="Form.confirmPassword" placeholder="请确认密码" type="password"></el-input>
     </el-form-item>
 
     <el-form-item>
@@ -40,7 +40,6 @@ export default {
         ],
         newPassword: [
           { required: true, message: "新密码不能为空", trigger: "blur" },
-          { min: 6, max: 20, message: "长度在 6 到 20 个字符", trigger: "blur" }
         ],
         confirmPassword: [
           { required: true, message: "确认密码不能为空", trigger: "blur" },
