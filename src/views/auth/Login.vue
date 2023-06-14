@@ -51,8 +51,11 @@ export default {
               }
             };
             auth(config).then(res2 => {
-              sessionStorage.setItem("name", res2.result.name);
-              sessionStorage.setItem("role", res2.result.role);
+              // sessionStorage.setItem("name", res2.result.name);
+              // sessionStorage.setItem("role", res2.result.role);
+              sessionStorage.setItem("name","1");
+              sessionStorage.setItem("role","GM");
+              sessionStorage.setItem("token","1111");
               this.$router.push("/");
             })
           }

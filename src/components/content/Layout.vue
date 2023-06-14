@@ -1,4 +1,5 @@
 <template>
+  <div style="width:250px">
   <el-container style="height: 100%; border: 1px solid #eee">
     <el-aside width="250px" style="background-color: #545c64">
       <header class="title">
@@ -108,6 +109,7 @@
       <slot></slot>
     </el-main>
   </el-container>
+  </div>
 </template>
 
 <script>
