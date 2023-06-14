@@ -36,7 +36,7 @@
 // import XLSX from 'xlsx'
 import * as xlsx from 'xlsx'
 import {PERFORMANCE_IN} from "@/apis";
-import {PerformaceInport} from "@/network/admin";
+import { PerformaceInport, PerformanceImport } from "@/network/admin";
 
 export default {
   name: 'HelloWorld',
@@ -59,7 +59,7 @@ export default {
       document.querySelector('.input-file').click()
     },
     PerformanceLoad(list){
-      PerformaceInport(list).then(_res =>{
+      PerformanceImport(list).then(_res =>{
         if(_res.message === 'Success'){
           this.$message.success("上传成功！");
         }

@@ -61,7 +61,7 @@
         </el-submenu>
 
         <el-submenu index="3"
-                    v-if="permit(PATH.GM.requiresAuth)">
+                    v-if="permit(PATH.ADMIN.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
             <span slot="title">管理员</span>

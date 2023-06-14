@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import { ROLE, PATH } from "../common/const";
 import GM from "@/views/GMView/gmView";
 import adminView from "@/views/AdminView/adminView";
+import { STAFF_IN } from "@/apis";
 
 
 
@@ -18,6 +19,8 @@ const OutInfo = () => import("../views/GMView/excelOut");
 const EditPassword =() => import("../views/staff/EditPassword");
 const StaffInFo =() => import("../views/StaffView/StaffInfo");
 const ShowPerformance =() => import("../views/StaffView/CheckPerformance.vue");
+const PerformanceImport =() => import("../views/AdminView/PerformanceIn.vue");
+const StaffImport =() => import("../views/AdminView/StaffIn.vue");
 
 Vue.use(VueRouter);
 
@@ -93,6 +96,16 @@ const routes = [
     path:PATH.SHOW_PERFORMANCE.path,
     component:ShowPerformance,
     meta: {requiresAuth: PATH.SHOW_PERFORMANCE.requiresAuth}
+  },
+  {
+    path:PATH.PERFORMANCE_IN.path,
+    component:PerformanceImport,
+    meta: {requiresAuth: PATH.PERFORMANCE_IN.requiresAuth}
+  },
+  {
+    path: PATH.STAFF_IN.path,
+    component:StaffImport,
+    meta: {requiresAuth: PATH.STAFF_IN.requiresAuth}
   },
   // -----------------------未找到页面-----------------------------
   {
