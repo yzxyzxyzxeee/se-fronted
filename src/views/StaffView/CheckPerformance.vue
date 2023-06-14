@@ -50,12 +50,15 @@
 
 <script>
 import { getData,getMonthData } from '../api'
-import * as echarts from 'echarts' 
+import * as echarts from 'echarts'
+import {PERFORMANCE_STAFF} from "@/apis";
+import {getPerformanceByname} from "@/network/staff";
 export default {
     data(){
         return{
            form:{
-                value1:'',
+                name:sessionStorage.getItem("name"),
+                value1:''
             },
             rules:{
                 Fname1:[
@@ -65,6 +68,12 @@ export default {
         }
     },
     methods:{
+      getPerformance(){
+        let name = sessionStorage.getItem("name");
+        getPerformanceByname(name).then(_res =>{
+
+        })
+      },
         onSubmit(){
         //折线图数据
             getData({params: {...this.form}}).then(({data}) => {
@@ -86,9 +95,6 @@ export default {
                     data:orderData.data.map(item => item["绩效"]),
                     type:'line'
             }]
-
-
-           
             //根据刚刚指定的配置项和数据显示图表
             echarts1.setOption(echarts1Option)
             
@@ -233,9 +239,6 @@ export default {
             console.log(err,"err")
         })
         }
-
-        
-
     }
 </script>
 

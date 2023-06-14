@@ -20,7 +20,7 @@ const STAFF_IN = "/admin-create-GM/createAll"
 const PERFORMANCE_IN ="/api/performance/save";
 const PERFORMANCE_QUERY = '/api/performance/findAll'
 const PERFORMANCE_STAFF = '/api/performance/findByName'
-
+const PERFORMANCE_ADD = '/api/performance/save'
 
 module.exports = {
 
@@ -33,6 +33,7 @@ module.exports = {
     PERFORMANCE_IN,
     PERFORMANCE_QUERY,
     PERFORMANCE_STAFF,
+    PERFORMANCE_ADD,
 
     TEST_GET,
     TEST_POST,
