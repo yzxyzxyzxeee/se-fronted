@@ -1,8 +1,22 @@
 <template>
-  <Layout>
-    <Title title="员工 首页"></Title>
+  <div>
+    <el-container>
+      <el-aside width="200px">
+        <Layout/>
+      </el-aside>
+      <el-container>
+        <el-header>
+          <Title/>
+        </el-header>
 
-  </Layout>
+        <el-main>
+          <!-- 路由出口 -->
+          <!-- 路由匹配到的组件将渲染在这里 -->
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script>
