@@ -2,7 +2,7 @@
   <el-container style="height: 100%; border: 1px solid #eee">
     <el-aside width="250px" style="background-color: #545c64">
       <header class="title">
-        <div class="title-inner">ERP</div>
+        <div class="title-inner">职员人事系统</div>
       </header>
       <el-menu
         :default-active="getActivePath"
@@ -35,13 +35,6 @@
           >
             <i class="el-icon-receipt"></i>
             <span slot="title">个人绩效查看</span>
-          </el-menu-item>
-          <el-menu-item
-              :index="PATH.EDIT_PASSWORD_VIEW.path"
-              v-if="permit(PATH.EDIT_PASSWORD_VIEW.requiresAuth)"
-          >
-            <i class="el-icon-receipt"></i>
-            <span slot="title">密码修改</span>
           </el-menu-item>
         </el-submenu>
 
@@ -106,8 +99,8 @@
           <div class="logout-name">{{ getUsername() }}</div>
         </el-tooltip>
         <div class="logout111" @click="checkIn()">打卡</div>
-        <div class="logout" @click="logout()">退出登录</div>
         <div class="logout111" @click="editPassword()">修改密码</div>
+        <div class="logout" @click="logout()">退出登录</div>
       </div>
     </el-aside>
 
@@ -169,7 +162,7 @@ export default {
       return arr.some(role => role === sessionStorage.getItem("role"));
     },
     editPassword(){
-      this.$router.push("/eidtpasswordView");
+      this.$router.push("/editPasswordView");
     }
   }
 };

@@ -16,7 +16,7 @@ const StaffRegistrationView = () => import("../views/AdminView/staffRegistration
 const gmView = () => import("../views/GMView/gmView");
 const OutInfo = () => import("../views/GMView/excelOut");
 const EditPassword =() => import("../views/staff/EditPassword");
-const StaffInfo =()=>import("../views/StaffView/staffView.vue")
+const StaffInFo =() => import("../views/StaffView/StaffInfo");
 
 Vue.use(VueRouter);
 
@@ -84,11 +84,10 @@ const routes = [
     meta: { requiresAuth: PATH.EDIT_PASSWORD_VIEW.requiresAuth}
   },
   {
-    path:PATH.STAFF_INFO.path,
-    component:StaffInfo,
-    meta:{requiresAuth: PATH.STAFF_INFO.requiresAuth}
+    path: PATH.STAFF_INFO.path,
+    component:StaffInFo,
+    meta: {requiresAuth: PATH.STAFF_INFO.requiresAuth}
   },
-
   // -----------------------未找到页面-----------------------------
   {
     path: "*",

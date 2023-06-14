@@ -3,7 +3,7 @@
     <el-form label-position="right" ref="form" :model="form" label-width="150px">
 
       <el-form-item label="员工">
-        <el-input v-model="form.id"></el-input>
+        <el-input v-model="form.name"></el-input>
       </el-form-item>
 
       <el-form-item label="选择绩效月份" style="width:100%" >
@@ -84,16 +84,7 @@ export default {
           this.$message.error("添加失败")
         }
       })
-    },
-
-    submit(){
-      FaddUser(this.form).then(()=>{
-            //重新获取列表的接口
-            console.log("添加成功")
-            console.log(this.form,"添加绩效成功")
-          }
-      )
-    },
+    }
   }
 }
 </script>
