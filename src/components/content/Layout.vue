@@ -15,65 +15,33 @@
         router
       >
         <el-submenu index="1"
-                    v-if="permit(PATH.InventoryManager.requiresAuth)">
+                    v-if="permit(PATH.STAFF.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
-            <span slot="title">库存管理</span>
-          </template>
-        </el-submenu>
-
-        <el-submenu index="2"
-                    v-if="permit(PATH.SaleStaff.requiresAuth)">
-          <template slot="title">
-            <i class="el-icon-receiving"></i>
-            <span slot="title">销售</span>
-          </template>
-          <el-menu-item
-              :index="PATH.PromotionMake.path"
-              v-if="permit(PATH.PromotionMake.requiresAuth)"
-          >
-            <i class="el-icon-receiving"></i>
-            <span slot="title">促销策略</span>
-          </el-menu-item>
-        </el-submenu>
-
-        <el-submenu index="3"
-                    v-if="permit(PATH.SaleManager.requiresAuth)">
-          <template slot="title">
-            <i class="el-icon-sell"></i>
-            <span slot="title">销售经理</span>
-          </template>
-          <el-menu-item
-              :index="PATH.PromotionView.path"
-              v-if="permit(PATH.PromotionView.requiresAuth)"
-          >
-            <i class="el-icon-receiving"></i>
-            <span slot="title">促销策略审批</span>
-          </el-menu-item>
-        </el-submenu>
-
-        <el-submenu index="4"
-                    v-if="permit(PATH.FinancialStaff.requiresAuth)">
-          <template slot="title">
-            <i class="el-icon-receiving"></i>
-            <span slot="title">财政管理</span>
-          </template>
-        </el-submenu>
-
-
-        <el-submenu index="5"
-                    v-if="permit(PATH.GM.requiresAuth)">
-          <template slot="title">
-            <i class="el-icon-receiving"></i>
-            <span slot="title">审批</span>
+            <span slot="title">员工</span>
           </template>
 
           <el-menu-item
-              :index="PATH.PromotionView.path"
-              v-if="permit(PATH.PromotionView.requiresAuth)"
+              :index="PATH.STAFF_INFO.path"
+              v-if="permit(PATH.STAFF_INFO.requiresAuth)"
           >
             <i class="el-icon-receipt"></i>
-            <span slot="title">促销策略</span>
+            <span slot="title">个人信息查看</span>
+          </el-menu-item>
+
+          <el-menu-item
+              :index="PATH.STAFF_INFO.path"
+              v-if="permit(PATH.STAFF_INFO.requiresAuth)"
+          >
+            <i class="el-icon-receipt"></i>
+            <span slot="title">个人绩效查看</span>
+          </el-menu-item>
+          <el-menu-item
+              :index="PATH.EDIT_PASSWORD_VIEW.path"
+              v-if="permit(PATH.EDIT_PASSWORD_VIEW.requiresAuth)"
+          >
+            <i class="el-icon-receipt"></i>
+            <span slot="title">密码修改</span>
           </el-menu-item>
         </el-submenu>
 
@@ -83,21 +51,12 @@
             <i class="el-icon-receiving"></i>
             <span slot="title">管理</span>
           </template>
-
-          <el-menu-item
-              :index="PATH.CustomerView.path"
-              v-if="permit(PATH.CustomerView.requiresAuth)"
-          >
-            <i class="el-icon-receipt"></i>
-            <span slot="title">客户管理</span>
-          </el-menu-item>
         </el-submenu>
-
         <el-submenu index="7"
                     v-if="permit(PATH.STAFF_REGISTRATION_VIEW.requiresAuth)">
           <template slot="title">
             <i class="el-icon-receiving"></i>
-            <span slot="title">员工管理</span>
+            <span slot="title">添加员工</span>
           </template>
 
           <el-menu-item
@@ -121,13 +80,10 @@
               v-if="permit(PATH.EXCEL_OUT.requiresAuth)"
           >
             <i class="el-icon-receipt"></i>
-            <span slot="title">打卡信息导出</span>
+            <span slot="title">信息导出</span>
           </el-menu-item>
         </el-submenu>
-
       </el-menu>
-
-
       <div class="logout-fix">
         <el-tooltip
           class="item"
@@ -139,6 +95,7 @@
         </el-tooltip>
         <div class="logout111" @click="checkIn()">打卡</div>
         <div class="logout" @click="logout()">退出登录</div>
+        <div class="logout111" @click="editPassword()">修改密码</div>
       </div>
     </el-aside>
 
@@ -198,6 +155,9 @@ export default {
     },
     permit(arr) {
       return arr.some(role => role === sessionStorage.getItem("role"));
+    },
+    editPassword(){
+      this.$router.push("/eidtpasswordView");
     }
   }
 };

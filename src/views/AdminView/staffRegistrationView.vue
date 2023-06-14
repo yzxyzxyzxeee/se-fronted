@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <Title title="员工信息登记"></Title>
-    <el-button type="primary" size="medium" @click="dialogVisible=true">新建入职</el-button>
+    <el-button type="primary" size="medium" @click="dialogVisible=true">新建员工</el-button>
 
     <div class="hello">
       <el-row class="table-grid-content">
@@ -23,11 +23,11 @@
           label="姓名"
           width="100">
         </el-table-column>
-<!--        <el-table-column-->
-<!--          prop="gender"-->
-<!--          label="性别"-->
-<!--          width="80">-->
-<!--        </el-table-column>-->
+        <el-table-column
+          prop="gender"
+          label="性别"
+          width="80">
+        </el-table-column>
         <el-table-column
           prop="birth"
           label="出生日期"
@@ -44,31 +44,6 @@
           width="100">
         </el-table-column>
         <el-table-column
-          prop="baseSalary"
-          label="基本工资"
-          width="200">
-        </el-table-column>
-        <el-table-column
-          prop="jobSalary"
-          label="岗位工资"
-          width="200">
-        </el-table-column>
-        <el-table-column
-          prop="jobLevel"
-          label="岗位级别"
-          width="200">
-        </el-table-column>
-        <el-table-column
-          prop="salaryCalculateWay"
-          label="薪资计算方式"
-          width="200">
-        </el-table-column>
-        <el-table-column
-          prop="salaryCalculateWay"
-          label="薪资发放方式"
-          width="150">
-        </el-table-column>
-        <el-table-column
           label="操作">
           <template slot-scope="scope">
             <el-button
@@ -78,7 +53,7 @@
               编辑
             </el-button>
             <el-button
-              @click="deleteStaff(staffForm.name)"
+              @click="deleteStaff(scope.row.name)"
               type="text"
               size="small">
               删除
@@ -114,7 +89,7 @@
           <el-form-item label="出生日期" prop="birth">
             <el-date-picker
               v-model="staffForm.birth"
-              type="datetime">
+              type="date">
             </el-date-picker>
           </el-form-item>
 
@@ -131,30 +106,6 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="基本工资" prop="baseSalary">
-            <el-input v-model="staffForm.baseSalary"></el-input>
-          </el-form-item>
-          <el-form-item label="岗位工资" prop="jobSalary">
-            <el-input v-model="staffForm.jobSalary"></el-input>
-          </el-form-item>
-          <el-form-item label="岗位级别" prop="jobLevel">
-            <el-input v-model="staffForm.jobLevel"></el-input>
-          </el-form-item>
-          <el-form-item label="薪资计算方式" prop = "salaryCalculateWay">
-            <el-select v-model="staffForm.salaryCalculateWay">
-              <el-option
-                v-for="item in salaryWayList"
-                :key="item.id"
-                :label="item.name"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="薪资发放方式" prop="salaryProvideWay">
-            <el-input v-model="staffForm.salaryProvideWay"></el-input>
-          </el-form-item>
-
-
         </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
@@ -170,28 +121,6 @@
       <el-form :model="editInfo" :label-width="'100px'" size="mini">
         <el-form-item label="姓名">
           <el-input v-model="editInfo.name" placeholder="请输入账户的姓名"></el-input>
-        </el-form-item>
-        <el-form-item label="基本工资" prop="baseSalary">
-          <el-input v-model="staffForm.baseSalary"></el-input>
-        </el-form-item>
-        <el-form-item label="岗位工资" prop="jobSalary">
-          <el-input v-model="staffForm.jobSalary"></el-input>
-        </el-form-item>
-        <el-form-item label="岗位级别" prop="jobLevel">
-          <el-input v-model="staffForm.jobLevel"></el-input>
-        </el-form-item>
-        <el-form-item label="薪资计算方式" prop = "salaryCalculateWay">
-          <el-select v-model="staffForm.salaryCalculateWay">
-            <el-option
-              v-for="item in salaryWayList"
-              :key="item.id"
-              :label="item.name"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="薪资发放方式" prop="salaryProvideWay">
-          <el-input v-model="staffForm.salaryProvideWay"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -209,7 +138,6 @@ import Title from "@/components/content/Title";
 
 
 import { createStaff, getAllStaff,deleteStaffByName } from "@/network/staff";
-import {updateAccount} from "@/network/account";
 
 
 export default {
@@ -224,23 +152,12 @@ export default {
         { id: 1, name: "male", value: 'male'},
         { id: 2, name: "female", value: 'female'},
       ],
-      salaryWayList: [
-        { id: 1, name: "月薪制", value: 1},
-        { id: 2, name: "基本工资+提成的制度", value: 2},
-        { id: 3, name: "年薪制度", value: 3},
-      ],
       staffForm: {
         name: '',
-        realName: '',
         gender: '',
         birth: '',
         phoneNumber: '',
-        baseSalary: '',
         job: '',
-        jobLevel: '',
-        jobSalary: '',
-        salaryCalculateWay: '',
-        salaryProvideWay: '',
       },
       staffList: [],
       dialogVisible:false,
@@ -248,12 +165,8 @@ export default {
       editInfo: {},
       input:'',
       jobList: [
-        { id: 1, name: "库存管理人员", value: "INVENTORY_MANAGER"},
-        { id: 2, name: "进货销售人员", value: "SALE_STAFF"},
-        { id: 3, name: "财务人员", value: "FINANCIAL_STAFF"},
-        { id: 4, name: "销售经理", value: "SALE_MANAGER"},
-        { id: 5, name: "人力资源人员", value: "HR"},
-        { id: 6, name: "总经理", value: "GM"}
+        { id: 1, name: "员工", value: "STAFF"},
+        { id: 2, name: "主管", value: "SALE_STAFF"},
       ]
     }
   },
@@ -291,23 +204,12 @@ export default {
         this.editInfo = {};
         this.editDialogVisible = false;
       } else if (type === true) {
-        updateAccount(this.editInfo).then(_res => {
-          this.$message({
-            type: 'success',
-            message: '修改成功！'
-          })
-          console.log("success!!!success!!!success!!!success!!!")
-          this.editInfo = {};
-          this.editDialogVisible = false;
-          this.resetForm()
-          this.getStaff()
-        })
       }
     },
     deleteStaff(name){
       let config = {
         params: {
-          name:this.staffForm.name
+          name:name
         }
       };
       this.$confirm('是否要删除该账户？', '提示', {
@@ -343,12 +245,7 @@ export default {
           gender: '',
           birth: '',
           phoneNumber: '',
-          baseSalary: '',
           job: '',
-          jobLevel: '',
-          jobSalary: '',
-          salaryCalculateWay: '',
-          salaryProvideWay: '',
       }
     },
 
@@ -362,17 +259,7 @@ export default {
             phoneNumber: this.staffForm.phoneNumber,
             baseSalary: this.staffForm.baseSalary,
             job: this.staffForm.job,
-            jobLevel: this.staffForm.jobLevel,
-            jobSalary: this.staffForm.jobSalary,
-            salaryCalculateWay: this.staffForm.salaryCalculateWay,
             password: "123456",
-          }
-          let tmp = {
-            name: "caoxin11",
-            realName: "realname",
-            password: "123456",
-            job: "HR",
-            //gender: "male"
           }
           console.log(params);
           createStaff(params).then(_res => {
@@ -381,12 +268,11 @@ export default {
               this.$message.success('创建成功!')
               this.dialogVisible = false
               this.resetForm()
-              //this.getStaff()
+              this.getStaff()
             } else console.log(_res)
           })
         }
       })
-
     },
     filterTag(value, row) {
       return row.type === value
