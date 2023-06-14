@@ -12,7 +12,7 @@ import { ROLE, PATH } from "../common/const";
       if(role === ROLE.ADMIN) {
         this.$router.push(PATH.ADMIN.path);
       } else if(role === ROLE.STAFF){
-        this.$router.push(PATH.S)
+        this.$router.push(PATH.STAFF.path)
       } else if (role === ROLE.GM) {
         this.$router.push(PATH.GM.path);
       }

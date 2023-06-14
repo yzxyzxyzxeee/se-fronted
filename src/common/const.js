@@ -13,7 +13,7 @@ export const PATH = {
   // GM
   GM: {
     path: '/GMView',
-    requiresAuth: [ROLE.GM,ROLE.ADMIN]
+    requiresAuth: [ROLE.GM]
   },
   // admin
   ADMIN:{
@@ -52,7 +52,7 @@ export const PATH = {
   },
   // 改密码
   EDIT_PASSWORD_VIEW:{
-    path:"/eidtpasswordView",
+    path:"/editPasswordView",
     requiresAuth:[ROLE.GM,ROLE.STAFF,ROLE.ADMIN]
   },
   //查看绩效
