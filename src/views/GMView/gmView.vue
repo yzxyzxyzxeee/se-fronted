@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <Title title="GM 首页"></Title>
+    <Title title="主管 首页"></Title>
 
   </Layout>
 </template>

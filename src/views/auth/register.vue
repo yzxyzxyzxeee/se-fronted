@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="register">
-      <div class="title">ERP系统</div>
+      <div class="title">职员人事系统</div>
       <div class="form">
         <el-form :model="userInfo" :label-width="'100px'">
           <el-form-item label="用户名：">
@@ -39,12 +39,7 @@ export default {
     return {
       userInfo: {},
       roleList: [
-        { id: 1, name: "库存管理人员", value: "INVENTORY_MANAGER"},
-        { id: 2, name: "进货销售人员", value: "SALE_STAFF"},
-        { id: 3, name: "财务人员", value: "FINANCIAL_STAFF"},
-        { id: 4, name: "销售经理", value: "SALE_MANAGER"},
-        { id: 5, name: "人力资源人员", value: "HR"},
-        { id: 6, name: "总经理", value: "GM"}
+        { id: 1, name: "员工", value: "STAFF"},
       ]
     }
   },

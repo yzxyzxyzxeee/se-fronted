@@ -11,16 +11,8 @@ import { ROLE, PATH } from "../common/const";
       console.log(role)
       if(role === ROLE.ADMIN) {
         this.$router.push(PATH.ADMIN.path);
-      } else if(role === ROLE.INVENTORY_MANAGER) {
-        this.$router.push(PATH.InventoryManager.path);
-      } else if (role === ROLE.SALE_STAFF ) {
-        this.$router.push(PATH.SaleStaff.path);
-      } else if (role === ROLE.SALE_MANAGER){
-        this.$router.push(PATH.SaleManager.path)
-      } else if (role === ROLE.HR) {
-        this.$router.push(PATH.STAFF_REGISTRATION_VIEW.path);
-      }else if (role === ROLE.FINANCIAL_STAFF) {
-        this.$router.push(PATH.FinancialStaff.path);
+      } else if(role === ROLE.STAFF){
+        this.$router.push(PATH.S)
       } else if (role === ROLE.GM) {
         this.$router.push(PATH.GM.path);
       }

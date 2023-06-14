@@ -1,25 +1,21 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { ROLE, PATH } from "../common/const";
-import FinancialStaff from "@/views/financialStaff/FinancialStaff";
+import GM from "@/views/GMView/gmView";
+import adminView from "@/views/AdminView/adminView";
 
 
 
 const Error = () => import("../components/content/Error");
 const Login = () => import("../views/auth/Login");
 const Home = () => import("../views/Home");
-const AdminView = () => import("../views/admin/Admin");
-const FinancialStaffView = () => import("../views/financialStaff/FinancialStaff");
-const SaleStaffView = () => import("../views/SaleStaff/SaleStaff");
-const SaleManagerView = () => import("../views/SaleManager/SaleManager");
-const InventoryManagerView = () => import("../views/InventoryManager/InventoryManager");
-const PromotionView = () =>import("../views/promotion/PromotionView");
-const PromotionMakeView = () => import("../views/promotion/PromotionView");
-const CustomerView = () => import("../views/customer/CustomerView");
+const admin_View = () => import("../views/AdminView/adminView");
+const staffView = () => import("../views/StaffView/staffView");
 const StaffClockInView = () => import("../views/staff/staffClockInView");
-const StaffRegistrationView = () => import("../views/staff/staffRegistrationView");
-const Approval = () => import("../views/approval/Approval");
-const OutInfo = () => import("../views/staff/excelOut");
+const StaffRegistrationView = () => import("../views/AdminView/staffRegistrationView");
+const gmView = () => import("../views/GMView/gmView");
+const OutInfo = () => import("../views/GMView/excelOut");
+const EditPassword =() => import("../views/staff/EditPassword");
 
 Vue.use(VueRouter);
 
@@ -44,7 +40,7 @@ const routes = [
   //Admin
   {
     path: PATH.ADMIN.path,
-    component: AdminView,
+    component: admin_View,
     name:"AdminView",
     meta: { requiresAuth: PATH.ADMIN.requiresAuth }
   },
@@ -52,16 +48,23 @@ const routes = [
   // GM
   {
     path: PATH.GM.path,
-    component: Approval,
+    component: gmView,
     meta: { requiresAuth: PATH.GM.requiresAuth}
+  },
+  //Staff
+  {
+    path: PATH.STAFF.path,
+    component:staffView,
+    name:"StaffView",
+    meta:{ requiresAuth: PATH.STAFF.requiresAuth}
   },
 
   //员工管理
   {
-    path: PATH.STAFF_CLOCKIN_VIEW.path,
+    path: PATH.STAFF_CHECKIN_VIEW.path,
     component: StaffClockInView,
     name: "StaffClockInView",
-    meta: { requiresAuth: PATH.STAFF_CLOCKIN_VIEW.requiresAuth }
+    meta: { requiresAuth: PATH.STAFF_CHECKIN_VIEW.requiresAuth }
   },
   {
     path: PATH.STAFF_REGISTRATION_VIEW.path,
@@ -74,55 +77,11 @@ const routes = [
     component:OutInfo,
     meta:{ requiresAuth: PATH.EXCEL_OUT.requiresAuth }
   },
-  //财政
   {
-    path: PATH.FinancialStaff.path,
-    component:FinancialStaffView,
-    name:"FinancialStaffView",
-    meta: { requiresAuth: PATH.FinancialStaff.requiresAuth}
+    path: PATH.EDIT_PASSWORD_VIEW.path,
+    component:EditPassword,
+    meta: { requiresAuth: PATH.EDIT_PASSWORD_VIEW.requiresAuth}
   },
-  //销售
-  {
-    path: PATH.SaleStaff.path,
-    component:SaleStaffView,
-    name:"SaleStaffView",
-    meta: { requiresAuth: PATH.SaleStaff.requiresAuth}
-  },
-  {
-    path:PATH.PromotionMake.path,
-    component:PromotionMakeView,
-    name:"PromotionMakeView",
-    meta: { requiresAuth: PATH.PromotionMake.requiresAuth}
-  },
-  //销售经理
-  {
-    path: PATH.SaleManager.path,
-    component:SaleManagerView,
-    name:"SaleManagerView",
-    meta: { requiresAuth: PATH.SaleManager.requiresAuth}
-  },
-  //库存管理
-  {
-    path: PATH.InventoryManager.path,
-    component:InventoryManagerView,
-    name:"SaleManagerView",
-    meta: { requiresAuth: PATH.InventoryManager.requiresAuth}
-  },
-    //审批
-  {
-    path: PATH.PromotionView.path,
-    component:PromotionView,
-    name:"PromotionView",
-    meta: { requiresAuth: PATH.PromotionView.requiresAuth}
-  },
-    //顾客管理
-  {
-    path: PATH.CustomerView.path,
-    component:CustomerView,
-    name:"CustomerView",
-    meta:{requiresAuth: PATH.CustomerView.requiresAuth}
-  },
-
   // -----------------------未找到页面-----------------------------
   {
     path: "*",

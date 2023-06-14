@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="login">
-      <div class="title">ERP系统</div>
+      <div class="title">职员人事系统</div>
       <div class="form">
         <el-form :model="userInfo" :label-width="'100px'">
           <el-form-item label="用户名：">
